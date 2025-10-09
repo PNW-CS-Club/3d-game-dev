@@ -13,7 +13,8 @@ _Work in Progress_
 
 ## Possible Features
 * Proximity chat
-
+* Difficulty scaling
+  
 ## How to Contribute
 
 View the issues available at [https://github.com/PNW-CS-Club/3d-game-dev/issues](https://github.com/PNW-CS-Club/3d-game-dev/issues)
