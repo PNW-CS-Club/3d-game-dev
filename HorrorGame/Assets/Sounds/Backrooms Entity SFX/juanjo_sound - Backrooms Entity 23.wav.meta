@@ -1,0 +1,30 @@
+fileFormatVersion: 2
+guid: 3f370110de75baf409fc1a1cd41274ea
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 8
+  defaultSettings:
+    serializedVersion: 2
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
+    conversionMode: 0
+    preloadAudioData: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 324400
+  packageName: Backrooms Entity Sound Effects
+  packageVersion: 1.0
+  assetPath: Assets/Backrooms Entity SFX/juanjo_sound - Backrooms Entity 23.wav
+  uploadId: 767117
