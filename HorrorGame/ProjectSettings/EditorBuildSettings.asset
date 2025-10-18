@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameResources.unity
     guid: fa44665d78b3d9442a32824ca8cbd7a9
+  - enabled: 1
+    path: Assets/Scenes/SpawnRoomScene.unity
+    guid: 7e9823c699b861145b0ad6fffc2df038
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 3037ed85607368f4a9b0a84446fd430f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: aee9dce073393be49bfc1eddaf413a79, type: 3}

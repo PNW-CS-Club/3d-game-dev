@@ -14,7 +14,7 @@ namespace Unity.Template.CompetitiveActionMultiplayer
     {
         public const int MaxPlayer = 16;
         public const string MainMenuSceneName = "MainMenu";
-        public const string GameSceneName = "GameScene";
+        public const string GameSceneName = "SpawnRoomScene";
         public const string ResourcesSceneName = "GameResources";
 
         /// <summary>

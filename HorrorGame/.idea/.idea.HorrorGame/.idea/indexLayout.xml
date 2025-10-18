@@ -3,6 +3,8 @@
   <component name="UserContentModel">
     <attachedFolders />
     <explicitIncludes />
-    <explicitExcludes />
+    <explicitExcludes>
+      <Path>Assets/Editor/Tutorials</Path>
+    </explicitExcludes>
   </component>
 </project>
