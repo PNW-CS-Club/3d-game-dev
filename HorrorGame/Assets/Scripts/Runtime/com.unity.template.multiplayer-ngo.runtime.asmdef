@@ -1,0 +1,32 @@
+{
+    "name": "com.unity.template.multiplayer-ngo.runtime",
+    "rootNamespace": "Unity.Template.Multiplayer.NGO.Runtime",
+    "references": [
+        "Unity.Netcode.Runtime",
+        "com.unity.template.multiplayer-ngo.shared",
+        "ParrelSync",
+        "Unity.Services.Core",
+        "Unity.Services.Multiplayer",
+        "Unity.Services.Authentication",
+        "Unity.Services.Core.Environments",
+        "Unity.DedicatedServer.MultiplayerRoles",
+        "Unity.Multiplayer.Playmode",
+        "Unity.Services.Multiplayer.Server",
+        "Unity.Services.Authentication.Server"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.veriorpies.parrelsync",
+            "expression": "",
+            "define": "HAS_PARRELSYNC"
+        }
+    ],
+    "noEngineReferences": false
+}

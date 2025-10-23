@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/TemplateStyleSheet.uss?fileID=7433441132597879392&amp;guid=f5894c9d97a5b334fb951afee4f0740a&amp;type=3#TemplateStyleSheet" />
+    <ui:VisualElement name="match" class="canvas" style="align-items: center; justify-content: center;">
+        <ui:Label text="00:60" display-tooltip-when-elided="true" name="timerLabel" class="label" style="color: rgb(209, 48, 48); text-shadow: 2px 2px 0 rgb(115, 11, 11); margin-bottom: 60px;" />
+        <ui:Button text="Press me to win" display-tooltip-when-elided="true" name="winButton" class="button" style="font-size: 56px; width: 700px; height: 250px;" />
+    </ui:VisualElement>
+</ui:UXML>
