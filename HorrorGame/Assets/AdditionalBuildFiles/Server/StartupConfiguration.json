@@ -1,0 +1,12 @@
+{ 
+   "OverrideMultiplayerRole" : "False",
+   "StartAsHost" : "False", 
+   "StartAsServer" : "True", 
+   "StartAsClient" : "False", 
+   "MaxPlayers" : "2",
+   "Port" : "9797",
+   "EnableBots" : "False",
+   "ServerIP" : "127.0.0.1",
+   "AutoConnect" : "True",
+   "AllowReconnection" : "False"
+}

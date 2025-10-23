@@ -17,70 +17,76 @@ MonoBehaviour:
       m_Calls: []
   ParentContainer: {fileID: 0}
   OrderInView: 0
-  BackgroundImage: {fileID: 2800000, guid: b645331008f0f7547aa923c0e33d81ad, type: 3}
+  BackgroundImage: {fileID: 0}
   Title:
-    m_Untranslated: Table of contents
+    m_Untranslated: Table of Contents
   Subtitle:
-    m_Untranslated: Resources to learn more about the Multiplayer features that this
-      template uses.
+    m_Untranslated: Resources to get the most out of this template
   Description:
     m_Untranslated: 
   ProjectLayout: {fileID: 0}
   Sections:
+  - OrderInView: 0
+    Heading:
+      m_Untranslated: Services setup
+    Text:
+      m_Untranslated: Learn how to setup Unity Gaming Services for this project
+    Metadata: 
+    Url: https://docs.unity3d.com/Packages/com.unity.template.multiplayer-ngo@2.1/manual/index.html#requirements
+    Image: {fileID: 2800000, guid: caa22bb026fa84979ba1be2779739367, type: 3}
+    Tutorial: {fileID: 0}
   - OrderInView: 1
-    Heading:
-      m_Untranslated: The Multiplayer Networking Discord
-    Text:
-      m_Untranslated: Join our community of Multiplayer creators on Discord.
-    Metadata:
-    Url: https://discord.gg/EJt5GQ7Efa
-    Image: {fileID: 2800000, guid: f6bc74cdf0737a64591a41743ae87c0f, type: 3}
-    Tutorial: {fileID: 0}
-  - OrderInView: 2
-    Heading:
-      m_Untranslated: Open the Entities character controller samples repository
-    Text:
-      m_Untranslated: 
-    Metadata: 
-    Url: https://github.com/Unity-Technologies/CharacterControllerSamples
-    Image: {fileID: 2800000, guid: 2f3d9c388f3245f48aadcdcbbe07e804, type: 3}
-    Tutorial: {fileID: 0}
-  - OrderInView: 3
-    Heading:
-      m_Untranslated: Netcode for Entities documentation
-    Text:
-      m_Untranslated: Refer to the documentation to understand the advanced Netcode
-        for Entities concepts you can use to develop a multiplayer game.
-    Metadata: 
-    Url: https://docs.unity3d.com/Packages/com.unity.netcode@1.3/manual/index.html
-    Image: {fileID: 2800000, guid: 1dc92e87e1f431b4aa82bdeb57fe6704, type: 3}
-    Tutorial: {fileID: 0}
-  - OrderInView: 4
-    Heading:
-      m_Untranslated: Unity Gaming Services
-    Text:
-      m_Untranslated: A platform that helps you build, engage, and grow multiplayer
-        and live games.
-    Metadata: 
-    Url: https://docs.unity.com/ugs/en-us/manual/overview/manual/unity-gaming-services-home
-    Image: {fileID: 2800000, guid: 1d68d2fb0a506be41a9f55b25d7797ab, type: 3}
-    Tutorial: {fileID: 0}
-  - OrderInView: 5
-    Heading:
-      m_Untranslated: Join the Netcode for Entities Discussions forum
-    Text:
-      m_Untranslated: Join discussions about Netcode for Entities and get advice
-        from the community.
-    Metadata: 
-    Url: https://discussions.unity.com/tag/netcode-for-entities
-    Image: {fileID: 2800000, guid: 7dd3b0ca05151fb4ba75861f96c3d4c0, type: 3}
-    Tutorial: {fileID: 0}
-  - OrderInView: 6
     Heading:
       m_Untranslated: Share your feedback
     Text:
-      m_Untranslated: We value your feedback so please let us know how we can improve.
+      m_Untranslated: We value your feedback, please let us know how we can improve!
     Metadata: 
-    Url: https://unitysoftware.co1.qualtrics.com/jfe/form/SV_737vkLRWMiJNjpk?template=competitiveaction
-    Image: {fileID: 2800000, guid: 7fd682178aff3154b89d326d9f5f3c18, type: 3}
+    Url: https://unitysoftware.co1.qualtrics.com/jfe/form/SV_737vkLRWMiJNjpk?template=smallscale
+    Image: {fileID: 2800000, guid: caa22bb026fa84979ba1be2779739367, type: 3}
+    Tutorial: {fileID: 0}
+  - OrderInView: 2
+    Heading:
+      m_Untranslated: Multiplayer Networking Discord
+    Text:
+      m_Untranslated: Join our community of Multiplayer Creators on Discord!
+    Metadata: 
+    Url: https://discord.gg/unity-multiplayer-network
+    Image: {fileID: 2800000, guid: 560473a2bcedaa445a898dad26add529, type: 3}
+    Tutorial: {fileID: 0}
+  - OrderInView: 3
+    Heading:
+      m_Untranslated: Bite-size Samples Repository
+    Text:
+      m_Untranslated: Explore samples to learn about common features
+    Metadata: 
+    Url: https://github.com/Unity-Technologies/com.unity.multiplayer.samples.bitesize
+    Image: {fileID: 2800000, guid: 6c0320745ff0cf3408182793e4297f7f, type: 3}
+    Tutorial: {fileID: 0}
+  - OrderInView: 4
+    Heading:
+      m_Untranslated: Official Documentation
+    Text:
+      m_Untranslated: Refer to the documentation to understand advanced concepts
+    Metadata: 
+    Url: https://docs-multiplayer.unity3d.com/netcode/current/about
+    Image: {fileID: 2800000, guid: caa22bb026fa84979ba1be2779739367, type: 3}
+    Tutorial: {fileID: 0}
+  - OrderInView: 5
+    Heading:
+      m_Untranslated: Unity Gaming Services
+    Text:
+      m_Untranslated: Support multiplayer and live games at any scale, with any tech
+        stack.
+    Metadata: 
+    Url: https://on.unity.com/49uWNzq
+    Image: {fileID: 2800000, guid: caa22bb026fa84979ba1be2779739367, type: 3}
+    Tutorial: {fileID: 0}
+  - OrderInView: 6
+    Heading:
+      m_Untranslated: Dedicated Forum
+    Text:
+      m_Untranslated: Ask questions and get help on Netcode For GameObjects
+    Metadata: 
+    Url: https://forum.unity.com/forums/netcode-for-gameobjects.661/
+    Image: {fileID: 2800000, guid: 82e32bca649a0024ca6e263b5ac0a2b8, type: 3}
     Tutorial: {fileID: 0}

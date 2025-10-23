@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f107dc6d4c984c45bdafd3bb15f98f0, type: 3}
+  m_Name: GamingServicesSetup
+  m_EditorClassIdentifier: 
+  TutorialTitle:
+    m_Untranslated: Unity Gaming Services setup
+  m_ProgressTrackingEnabled: 1
+  m_LessonId: 9cf526ac-4c85-478b-b418-552cfa6270a3
+  m_Version: 1
+  m_ReturnToPreviousScenes: 1
+  m_SceneManagementBehavior: 1
+  m_Scenes:
+  - {fileID: 102900000, guid: 8c9cfa26abfee488c85f1582747f6a02, type: 3}
+  m_DefaultSceneCameraSettings:
+    m_CameraMode: 0
+    m_FocusMode: 0
+    m_Orthographic: 0
+    m_Size: 0
+    m_Pivot: {x: 0, y: 0, z: 0}
+    m_Rotation: {x: 0, y: 0, z: 0, w: 0}
+    m_FrameObject:
+      m_SceneGuid: 
+      m_GameObjectGuid: 
+      m_SerializedComponentType:
+        m_TypeName: 
+      m_ComponentIndex: 0
+      m_AssetObject: {fileID: 0}
+      m_Prefab: {fileID: 0}
+    m_Enabled: 0
+  m_WindowLayout: {fileID: 0}
+  m_Pages:
+    m_Items:
+    - {fileID: 11400000, guid: f1bf8db325c86724f89153a74a99f01a, type: 2}
+    - {fileID: 11400000, guid: da03c61f65e2b81448514323681c49a9, type: 2}
+    - {fileID: 11400000, guid: c18ac3501115307438ed831b740f7679, type: 2}
+    - {fileID: 11400000, guid: 53bb77f5042b0ce4c8cb327289b5f55e, type: 2}
+    - {fileID: 11400000, guid: 62895b9095eb82b4eb22cd3ac01b250a, type: 2}
+    - {fileID: 11400000, guid: 3d73707fd7076ea468f4d1a454cff1a9, type: 2}
+    - {fileID: 11400000, guid: 2a70842201b32bc4a8a8b7bcbf4d63da, type: 2}
+    - {fileID: 11400000, guid: 0061f602fe281944980bd65cacedab1d, type: 2}
+    - {fileID: 11400000, guid: 8e1cf9fa3a8739b47a9e11ca966d3096, type: 2}
+    - {fileID: 11400000, guid: f7678aff1771d6b48b819e24412378c6, type: 2}
+    - {fileID: 11400000, guid: 3065866ebb7a1a14db28b5459c706523, type: 2}
+    - {fileID: 11400000, guid: d8760caa0e2dd5d4d846a2bfe0a9065c, type: 2}
+  CompletionDialog: {fileID: 0}
+  Modified:
+    m_PersistentCalls:
+      m_Calls: []
+  Initiated:
+    m_PersistentCalls:
+      m_Calls: []
+  PageInitiated:
+    m_PersistentCalls:
+      m_Calls: []
+  GoingBack:
+    m_PersistentCalls:
+      m_Calls: []
+  Completed:
+    m_PersistentCalls:
+      m_Calls: []
+  Quit:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Scene: {fileID: 0}
+  m_TutorialTitle: 
