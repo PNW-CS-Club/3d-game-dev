@@ -7,7 +7,7 @@
     justify-content: center;
     align-self: auto;
     flex-grow: 1;
-    background-color: rgb(54, 54, 54);
+    background-color: rgba(54, 54, 54, 0);
 }
 
 .label {
