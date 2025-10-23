@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367f31447d3b81a4d9ca9b49ae41027e, type: 3}
   m_Name: TutorialCallbacks
   m_EditorClassIdentifier: 
-  m_MainMenuScene: {fileID: 102900000, guid: da329004e7382194895b801d225a96a7, type: 3}
+  m_MetagameScene: {fileID: 102900000, guid: 8c9cfa26abfee488c85f1582747f6a02, type: 3}

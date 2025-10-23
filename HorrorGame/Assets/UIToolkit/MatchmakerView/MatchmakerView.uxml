@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/TemplateStyleSheet.uss?fileID=7433441132597879392&amp;guid=f5894c9d97a5b334fb951afee4f0740a&amp;type=3#TemplateStyleSheet" />
+    <ui:VisualElement name="matchmaker" class="canvas">
+        <ui:Label text="In queue" name="titleLabel" class="label" />
+        <ui:Label text="00:00" name="timerLabel" class="label sublabel" />
+        <ui:Button text="Exit queue" display-tooltip-when-elided="true" name="quitButton" class="button" />
+    </ui:VisualElement>
+</ui:UXML>
