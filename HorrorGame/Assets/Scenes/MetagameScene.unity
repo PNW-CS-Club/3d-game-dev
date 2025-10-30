@@ -3987,6 +3987,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 810635909236727068, guid: 9ae46c35e3bf77445874ea3b2ad77686, type: 3}
+      propertyPath: NetworkConfig.NetworkTopology
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3490084144686808900, guid: 9ae46c35e3bf77445874ea3b2ad77686, type: 3}
       propertyPath: m_RootOrder
       value: 1
