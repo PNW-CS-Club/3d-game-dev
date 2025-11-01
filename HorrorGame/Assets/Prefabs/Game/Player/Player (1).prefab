@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1586888836
+  GlobalObjectIdHash: 1232704786
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -412,8 +412,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   moveSpeed: 7
   groundDrag: 5
-  jumpForce: 12
-  jumpCooldown: 0.25
+  jumpForce: 15
+  jumpCooldown: 1
   airMultiplier: 0.4
   jumpKey: 32
   playerHeight: 2
