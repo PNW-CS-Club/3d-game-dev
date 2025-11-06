@@ -1,42 +1,69 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class MazeGenerator : MonoBehaviour
 {
-    public class Cell
+    private class Cell
     {
         public bool visited = false;
-        public bool[] status = new bool[5]; //the status that tracks up down left and right
+        public bool[] status = new bool[4]; // the status that tracks up/down/left/right
     }
 
-    public Vector2 size;
+    public Vector2Int size;
     public int startPos = 0;
+    
     public GameObject TwoWay;
+    public GameObject ThreeWay;
+    public GameObject FourWay;
+    public GameObject Straight;
+    public GameObject DeadEnd;
+    public GameObject EmptyObject; // this one can just hold a prefab with a single empty gameobject
+    
     public Vector3 offset;
     List<Cell> board;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // this will hold the model and rotation (in degrees) that should be used for every possible value of statuses
+    Dictionary<bool4, Tuple<GameObject, float>> modelDict = new();
+    
+    
     void Start()
     {
+        modelDict.Add(new(true,true,true,true), new(FourWay, 0f));
+        modelDict.Add(new(true,true,true,false), new(ThreeWay, 0f));
+        modelDict.Add(new(true,true,false,true), new(ThreeWay, -90f));
+        modelDict.Add(new(true,true,false,false), new(TwoWay, 0f));
+        // ...and so on for all 2^4=16 entries...
+        modelDict.Add(new(false,false,false,false), new(EmptyObject, 0f));
+        
         TheMazeGenerator();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     void GenerateMaze()
     {
-        for(int i = 0; i < size.x; i++)
+        for (int i = 0; i < size.x; i++)
         {
-            for(int j = 0; j < size.y; j++)
-            {
-                var newRoom = Instantiate(TwoWay, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform);
+            for (int j = 0; j < size.y; j++) {
+                
+                Cell currentCell = board[i * size.x + j];
+                
+                // retrieve a (GameObject, float) pair from the dictionary based on the 4 statuses
+                (GameObject roomToInstantiate, float rotation) = modelDict[new(
+                            currentCell.status[0], 
+                            currentCell.status[1], 
+                            currentCell.status[2],
+                            currentCell.status[3])];
+                
+                var newRoom = Instantiate(
+                    original: roomToInstantiate, 
+                    position: new Vector3(i * offset.x, 0, -j * offset.y), 
+                    rotation: Quaternion.Euler(0, rotation, 0), 
+                    parent: transform
+                );
 
-                newRoom.name += "" + i + "-" + j;
+                newRoom.name += " " + i + "-" + j;
             }
         }
     }
@@ -93,7 +120,7 @@ public class MazeGenerator : MonoBehaviour
                 {
                     board[currentCell].status[1] = true;
                     currentCell = newCell;
-                    board[currentCell].status[4] = true;
+                    board[currentCell].status[0] = true;
                 }
             }
             else
