@@ -9,7 +9,7 @@ public class MazeGenerator : MonoBehaviour
     private class Cell
     {
         public bool visited = false;
-        public bool[] status = new bool[14]; // the status that tracks up/down/left/right
+        public bool[] status = new bool[4]; // the status that tracks up/down/left/right
     }
 
     public Vector2Int size;
@@ -38,7 +38,7 @@ public class MazeGenerator : MonoBehaviour
         modelDict.Add(new(true, false, true, true), new(ThreeWay, 90f));
         modelDict.Add(new(false, true, true, true), new(ThreeWay, 180f));
 
-        modelDict.Add(new(true, true, false, false), new(TwoWay, 0f));
+        modelDict.Add(new(true, true, false, false), new(TwoWay, 0f)); //this is should be a corner piece 
         modelDict.Add(new(false, false, true, true), new(TwoWay, 90f));
         modelDict.Add(new(false, true, true, false), new(TwoWay, -90f));
         modelDict.Add(new(false, true, false, true), new(TwoWay, 180));
@@ -48,7 +48,7 @@ public class MazeGenerator : MonoBehaviour
         modelDict.Add(new(false, false, true, false), new(DeadEnd, 90f));
         modelDict.Add(new(false, false, false, true), new(DeadEnd, 180f));
 
-        modelDict.Add(new(true, false, true, false), new(Straight, 0f));
+        modelDict.Add(new(true, false, true, false), new(Straight, 0f)); //this will be the regular straight two way
         modelDict.Add(new(true, false, false, true), new(Straight, 90f));
         // ...and so on for all 2^4=16 entries...
         modelDict.Add(new(false,false,false,false), new(EmptyObject, 0f));
@@ -70,16 +70,6 @@ public class MazeGenerator : MonoBehaviour
                             currentCell.status[1],
                             currentCell.status[2],
                             currentCell.status[3])];
-                            // currentCell.status[4],
-                            // currentCell.status[5],
-                            // currentCell.status[6],
-                            // currentCell.status[7],
-                            // currentCell.status[8],
-                            // currentCell.status[9],
-                            // currentCell.status[10],
-                            // currentCell.status[11], 
-                            // currentCell.status[12],
-                            // currentCell.status[13])];
                 
                 var newRoom = Instantiate(
                     original: roomToInstantiate, 
@@ -136,7 +126,7 @@ public class MazeGenerator : MonoBehaviour
 
                 if(newCell > currentCell)
                 {
-                    //down or right
+                    //down or right, this is where it determines the status of the bool4
                     if(newCell - 1 == currentCell)
                     {
                         board[currentCell].status[2] = true;
