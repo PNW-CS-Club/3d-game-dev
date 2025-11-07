@@ -9,7 +9,7 @@ public class MazeGenerator : MonoBehaviour
     private class Cell
     {
         public bool visited = false;
-        public bool[] status = new bool[4]; // the status that tracks up/down/left/right
+        public bool[] status = new bool[14]; // the status that tracks up/down/left/right
     }
 
     public Vector2Int size;
@@ -31,10 +31,25 @@ public class MazeGenerator : MonoBehaviour
     
     void Start()
     {
-        modelDict.Add(new(true,true,true,true), new(FourWay, 0f));
-        modelDict.Add(new(true,true,true,false), new(ThreeWay, 0f));
-        modelDict.Add(new(true,true,false,true), new(ThreeWay, -90f));
-        modelDict.Add(new(true,true,false,false), new(TwoWay, 0f));
+        modelDict.Add(new(true, true, true, true), new(FourWay, 0f));
+        
+        modelDict.Add(new(true, true, true, false), new(ThreeWay, 0f));
+        modelDict.Add(new(true, true, false, true), new(ThreeWay, -90f));
+        modelDict.Add(new(true, false, true, true), new(ThreeWay, 90f));
+        modelDict.Add(new(false, true, true, true), new(ThreeWay, 180f));
+
+        modelDict.Add(new(true, true, false, false), new(TwoWay, 0f));
+        modelDict.Add(new(false, false, true, true), new(TwoWay, 90f));
+        modelDict.Add(new(false, true, true, false), new(TwoWay, -90f));
+        modelDict.Add(new(false, true, false, true), new(TwoWay, 180));
+
+        modelDict.Add(new(true, false, false, false), new(DeadEnd, 0f));
+        modelDict.Add(new(false, true, false, false), new(DeadEnd, -90f));
+        modelDict.Add(new(false, false, true, false), new(DeadEnd, 90f));
+        modelDict.Add(new(false, false, false, true), new(DeadEnd, 180f));
+
+        modelDict.Add(new(true, false, true, false), new(Straight, 0f));
+        modelDict.Add(new(true, false, false, true), new(Straight, 90f));
         // ...and so on for all 2^4=16 entries...
         modelDict.Add(new(false,false,false,false), new(EmptyObject, 0f));
         
@@ -51,10 +66,20 @@ public class MazeGenerator : MonoBehaviour
                 
                 // retrieve a (GameObject, float) pair from the dictionary based on the 4 statuses
                 (GameObject roomToInstantiate, float rotation) = modelDict[new(
-                            currentCell.status[0], 
-                            currentCell.status[1], 
+                            currentCell.status[0],
+                            currentCell.status[1],
                             currentCell.status[2],
                             currentCell.status[3])];
+                            // currentCell.status[4],
+                            // currentCell.status[5],
+                            // currentCell.status[6],
+                            // currentCell.status[7],
+                            // currentCell.status[8],
+                            // currentCell.status[9],
+                            // currentCell.status[10],
+                            // currentCell.status[11], 
+                            // currentCell.status[12],
+                            // currentCell.status[13])];
                 
                 var newRoom = Instantiate(
                     original: roomToInstantiate, 
@@ -103,39 +128,41 @@ public class MazeGenerator : MonoBehaviour
                     break;
                 }
                 currentCell = path.Pop();
-            }
-            path.Push(currentCell);
-
-            int newCell = neighbors[Random.Range(0, neighbors.Count)];
-
-            if(newCell > currentCell)
+            } else
             {
-                //down or right
-                if(newCell - 1 == currentCell)
+                path.Push(currentCell);
+
+                int newCell = neighbors[Random.Range(0, neighbors.Count)];
+
+                if(newCell > currentCell)
                 {
-                    board[currentCell].status[2] = true;
-                    currentCell = newCell;
-                    board[currentCell].status[3] = true;
-                } else
-                {
-                    board[currentCell].status[1] = true;
-                    currentCell = newCell;
-                    board[currentCell].status[0] = true;
+                    //down or right
+                    if(newCell - 1 == currentCell)
+                    {
+                        board[currentCell].status[2] = true;
+                        currentCell = newCell;
+                        board[currentCell].status[3] = true;
+                    } else
+                    {
+                        board[currentCell].status[1] = true;
+                        currentCell = newCell;
+                        board[currentCell].status[0] = true;
+                    }
                 }
-            }
-            else
-            {
-                //up or left
-                if(newCell + 1 == currentCell)
+                else
                 {
-                    board[currentCell].status[3] = true;
-                    currentCell = newCell;
-                    board[currentCell].status[2] = true;
-                } else
-                {
-                    board[currentCell].status[0] = true;
-                    currentCell = newCell;
-                    board[currentCell].status[1] = true;
+                    //up or left
+                    if(newCell + 1 == currentCell)
+                    {
+                        board[currentCell].status[3] = true;
+                        currentCell = newCell;
+                        board[currentCell].status[2] = true;
+                    } else
+                    {
+                        board[currentCell].status[0] = true;
+                        currentCell = newCell;
+                        board[currentCell].status[1] = true;
+                    }
                 }
             }
         }
@@ -157,12 +184,12 @@ public class MazeGenerator : MonoBehaviour
             neighbors.Add(Mathf.FloorToInt(cell + size.x));
         }
         //check the right neighbor of the cell
-        if ((cell + 1) % size.x != board.Count && !board[Mathf.FloorToInt(cell + 1)].visited)
+        if ((cell + 1) % size.x != 0 && !board[Mathf.FloorToInt(cell + 1)].visited)
         {
             neighbors.Add(Mathf.FloorToInt(cell + 1));
         }
         //check the left neighbor of the cell
-        if ((cell - 1) % size.x != board.Count && !board[Mathf.FloorToInt(cell - 1)].visited)
+        if (cell % size.x != 0 && !board[Mathf.FloorToInt(cell - 1)].visited)
         {
             neighbors.Add(Mathf.FloorToInt(cell - 1));
         }
