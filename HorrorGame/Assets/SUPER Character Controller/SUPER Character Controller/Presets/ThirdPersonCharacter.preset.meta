@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e78791d94b91619408018634cf4c942b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 135316
+  packageName: Character Controller SUPER
+  packageVersion: 22.10.9f
+  assetPath: Assets/SUPER Character Controller/SUPER Character Controller/Presets/ThirdPersonCharacter.preset
+  uploadId: 532477
