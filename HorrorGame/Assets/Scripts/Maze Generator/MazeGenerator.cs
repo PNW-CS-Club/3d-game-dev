@@ -15,7 +15,7 @@ public class MazeGenerator : MonoBehaviour
     public Vector2Int size;
     public int startPos = 0;
     
-    public GameObject TwoWay;
+    public GameObject CornerPath;
     public GameObject ThreeWay;
     public GameObject FourWay;
     public GameObject Straight;
@@ -38,10 +38,10 @@ public class MazeGenerator : MonoBehaviour
         modelDict.Add(new(true, false, true, true), new(ThreeWay, 90f));
         modelDict.Add(new(false, true, true, true), new(ThreeWay, 180f));
 
-        modelDict.Add(new(true, true, false, false), new(TwoWay, 0f)); //this is should be a corner piece 
-        modelDict.Add(new(false, false, true, true), new(TwoWay, 90f));
-        modelDict.Add(new(false, true, true, false), new(TwoWay, -90f));
-        modelDict.Add(new(false, true, false, true), new(TwoWay, 180));
+        modelDict.Add(new(true, false, false, true), new(CornerPath, 0f)); //this is should be a corner piece 
+        modelDict.Add(new(false, false, true, true), new(CornerPath, 90f));
+        modelDict.Add(new(true, true, false, false), new(CornerPath, -90f));
+        modelDict.Add(new(false, true, true, false), new(CornerPath, 180));
 
         modelDict.Add(new(true, false, false, false), new(DeadEnd, 0f));
         modelDict.Add(new(false, true, false, false), new(DeadEnd, -90f));
@@ -49,7 +49,7 @@ public class MazeGenerator : MonoBehaviour
         modelDict.Add(new(false, false, false, true), new(DeadEnd, 180f));
 
         modelDict.Add(new(true, false, true, false), new(Straight, 0f)); //this will be the regular straight two way
-        modelDict.Add(new(true, false, false, true), new(Straight, 90f));
+        modelDict.Add(new(false, true, false, true), new(Straight, 90f));
         // ...and so on for all 2^4=16 entries...
         modelDict.Add(new(false,false,false,false), new(EmptyObject, 0f));
         
