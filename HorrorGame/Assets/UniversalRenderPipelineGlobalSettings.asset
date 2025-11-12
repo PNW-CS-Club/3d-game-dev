@@ -63,7 +63,19 @@ MonoBehaviour:
       - rid: 803210201385664515
       - rid: 803210201385664516
     m_RuntimeSettings:
-      m_List: []
+      m_List:
+      - rid: 1932429512659959808
+      - rid: 1932429512659959810
+      - rid: 1932429512659959811
+      - rid: 1932429512659959813
+      - rid: 1932429512659959816
+      - rid: 1932429512659959817
+      - rid: 1932429512659959821
+      - rid: 1932429512659959824
+      - rid: 1932429512659959826
+      - rid: 570941372500803584
+      - rid: 570941372500803586
+      - rid: 570941372500803587
   m_AssetVersion: 8
   m_ObsoleteDefaultVolumeProfile: {fileID: 0}
   m_RenderingLayerNames:
@@ -220,8 +232,6 @@ MonoBehaviour:
       type: {class: RenderingDebuggerRuntimeResources, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.Core.Runtime}
       data:
         m_version: 0
-        m_DebugUIHandlerCanvasPrefab: {fileID: 1153602445894428, guid: cf6cbdd672089a84796e55a21fed1cbe, type: 3}
-        m_DebugUIPersistentCanvasPrefab: {fileID: 1822588063230394, guid: f6b1a0fe75d5009449cf55ae76220e2b, type: 3}
     - rid: 1932429512659959808
       type: {class: UniversalRenderPipelineRuntimeTextures, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:
