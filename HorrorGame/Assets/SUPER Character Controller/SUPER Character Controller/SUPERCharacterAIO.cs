@@ -1,8 +1,8 @@
 //Original Code Author: Aedan Graves
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 using UnityEngine.UI;
 using System.Linq;
 #if UNITY_EDITOR
@@ -20,7 +20,7 @@ using UnityEngine.InputSystem.Interactions;
 // more camera animations
 namespace SUPERCharacter{
 [RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(CapsuleCollider))][AddComponentMenu("SUPER Character/SUPER Character Controller")]
-public class SUPERCharacterAIO : MonoBehaviour{
+public class SUPERCharacterAIO : NetworkBehaviour{
     #region Variables
 
     public bool controllerPaused = false;
@@ -295,7 +295,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
     public bool enableGroundingDebugging = false, enableMovementDebugging = false, enableMouseAndCameraDebugging = false, enableVaultDebugging = false;
     #endregion
     void Start(){
-   
+        if(!isLocalPlayer) return;
         
         
         #region Camera
@@ -420,6 +420,8 @@ public class SUPERCharacterAIO : MonoBehaviour{
         
     }
     void Update(){
+        if(!isLocalPlayer) return;
+
         if(!controllerPaused){
         #region Input
         #if ENABLE_INPUT_SYSTEM
@@ -578,6 +580,8 @@ public class SUPERCharacterAIO : MonoBehaviour{
         #endregion
     }
     void FixedUpdate() {
+        if(!isLocalPlayer) return;
+
         if(!controllerPaused){
 
             
@@ -608,8 +612,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
     }
  
     #region Camera Functions
-    void RotateView(Vector2 yawPitchInput, float inputSensitivity, float cameraWeight){
-        
+    void RotateView(Vector2 yawPitchInput, float inputSensitivity, float cameraWeight){    
         switch (viewInputMethods){
             
             case ViewInputModes.Traditional:{  
@@ -659,8 +662,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
         }
         
     }
-    public void RotateView(Vector3 AbsoluteEulerAngles, bool SmoothRotation){
-
+    public void RotateView(Vector3 AbsoluteEulerAngles, bool SmoothRotation){  
         switch (cameraPerspective){
 
             case (PerspectiveModes._1stPerson):{
@@ -723,7 +725,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
             }break;
         }
     }
-    public void ChangePerspective(PerspectiveModes newPerspective = PerspectiveModes._1stPerson){
+    public void ChangePerspective(PerspectiveModes newPerspective = PerspectiveModes._1stPerson){   
         switch(newPerspective){
             case PerspectiveModes._1stPerson:{
                 StopCoroutine("SmoothRot");
@@ -779,7 +781,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
             }
         }
     }
-    void HeadbobCycleCalculator(){
+    void HeadbobCycleCalculator(){ 
         if(enableHeadbob){
             if(!isIdle && currentGroundInfo.isGettingGroundInfo && !isSliding){
                 headbobWarmUp = Mathf.MoveTowards(headbobWarmUp, 1,Time.deltaTime*5);
@@ -796,8 +798,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
             if(StepCycle>(headbobCyclePosition*3)){StepCycle = headbobCyclePosition+0.5f;}
         }
     }
-    void UpdateCameraPosition_3rdPerson(){
-
+    void UpdateCameraPosition_3rdPerson(){ 
         //Camera Obstacle Check
         cameraObstCheck= new Ray(headPos+(quatHeadRot*(Vector3.forward*capsule.radius)), quatHeadRot*-Vector3.forward); 
         if(Physics.SphereCast(cameraObstCheck, 0.5f, out cameraObstResult,maxCameraDistInternal, cameraObstructionIgnore,QueryTriggerInteraction.Ignore)){
@@ -818,7 +819,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
         playerCamera.transform.rotation = quatHeadRot;
     }
 
-    void UpdateBodyRotation_3rdPerson(){
+    void UpdateBodyRotation_3rdPerson(){ 
          //if is moving, rotate capsule to match camera forward   //change button down to bool of isFiring or isTargeting
         if(!isIdle && !isSliding && currentGroundInfo.isGettingGroundInfo){
             transform.rotation = (Quaternion.Euler(0,Mathf.MoveTowardsAngle(p_Rigidbody.rotation.eulerAngles.y,(Mathf.Atan2(InputDir.x,InputDir.z)*Mathf.Rad2Deg),10), 0));
