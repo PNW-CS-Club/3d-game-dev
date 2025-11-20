@@ -24,7 +24,9 @@ public class MazeCell : MonoBehaviour
     [SerializeField]
     private GameObject _floor;
 
-    public bool IsVisted {
+    public int x, z;
+
+    public bool IsVisited {
         get; //allows other scrips to read the values
         private set; //on this class can change the value
     } //this stores wehther cell has been visited. store true or false
@@ -32,7 +34,7 @@ public class MazeCell : MonoBehaviour
 
     public void Visit() //this cell will be called when visited by the generator algorithm
     {
-        IsVisted = true; //this tells the cell that it has been visited dont visit again
+        IsVisited = true; //this tells the cell that it has been visited dont visit again
         _unvisitedBlock.SetActive(false); //this will deactive the univisted block and make the walls visible
     }
 

@@ -9,29 +9,35 @@ public class NewMazeGenerator : MonoBehaviour
 
     [SerializeField]
     private MazeCell _mazeCellPrefab;
+    
+    [SerializeField] private Vector2Int _gridSize = new(10, 10); 
 
-    [SerializeField]
-    private int _mazeWidth;
-
-    [SerializeField]
-    private int _mazeDepth;
+    [SerializeField] private Vector2 _cellSize = new(4f, 4f);
+    [SerializeField] private int entranceOffset = 5;
 
     private MazeCell[,] _mazeGrid; //this will hold the grid of cells
 
     IEnumerator Start()
     {
-        _mazeGrid = new MazeCell[_mazeWidth, _mazeDepth];
+        _mazeGrid = new MazeCell[_gridSize.x, _gridSize.y];
 
-
-        for(int x = 0; x < _mazeWidth; x+=4)
+        for(int x = 0; x < _gridSize.x; x++)
         {
-            for(int z = 0; z < _mazeDepth; z+=4)
+            for(int z = 0; z < _gridSize.y; z++)
             {
-                _mazeGrid[x, z] = Instantiate(_mazeCellPrefab, new Vector3(x, 0, z), Quaternion.identity); //this will actually create the cell and store it in the _mazeGrid array
+                _mazeGrid[x, z] = Instantiate(_mazeCellPrefab, new Vector3(x * _cellSize.x, 0, z * _cellSize.y), Quaternion.identity, transform); //this will actually create the cell and store it in the _mazeGrid array
+                _mazeGrid[x, z].x = x;
+                _mazeGrid[x, z].z = z;
             }
         }
 
-        yield return GenerateMaze(null, _mazeGrid[0,0]);
+        yield return GenerateMaze(null, _mazeGrid[entranceOffset, 0]);
+        
+        MazeCell entranceCell = _mazeGrid[entranceOffset, 0];
+        entranceCell.ClearBackWall();
+        
+        MazeCell exitCell = _mazeGrid[entranceOffset, _gridSize.y - 1];
+        exitCell.ClearFrontWall();
     }
 
     private IEnumerator GenerateMaze(MazeCell previousCell, MazeCell currentCell) //this method will called recursilvey to make sure that everything has been visited in teh maze
@@ -39,7 +45,7 @@ public class NewMazeGenerator : MonoBehaviour
         currentCell.Visit(); //this will make all the current walls visible
         ClearWalls(previousCell, currentCell);
 
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.01f);
 
         MazeCell nextCell;
 
@@ -58,6 +64,7 @@ public class NewMazeGenerator : MonoBehaviour
     {
         var unvisitedCells = GetUnvisitedCells(currentCell);
 
+        // return a random unvisited cell
         return unvisitedCells.OrderBy(_ => Random.Range(1,10)).FirstOrDefault();
 
         //use the link to order the list randomly
@@ -70,54 +77,49 @@ public class NewMazeGenerator : MonoBehaviour
 
     private IEnumerable<MazeCell> GetUnvisitedCells(MazeCell currentCell) //this will return all the unvisited neighbors, curerntCell will check around to see all the unvisited neighbors
     {
-        int x = (int)currentCell.transform.position.x; //these correspond to the index within the grid
-        int z = (int)currentCell.transform.position.z; 
+        int x = currentCell.x;
+        int z = currentCell.z;
 
         //x always you to move left and right 
         
-        if(x + 4 < _mazeWidth) //this will check if the next cell to the right is within the bounds of the grid
+        if(x + 1 < _gridSize.x) //this will check if the next cell to the right is within the bounds of the grid
         {
-            var cellToRight = _mazeGrid[x+4, z];
+            var cellToRight = _mazeGrid[x+1, z];
 
-            if(cellToRight.IsVisted == false) //check if the cell to the right has been visited
+            if(cellToRight.IsVisited == false) //check if the cell to the right has been visited
             {
                 yield return cellToRight; //if it has not been visited will return the results
             }
         }
 
-        if(x - 4 >= 0) //check to see if the within the bonds of 0
+        if(x - 1 >= 0) //check to see if the within the bonds of 0
         {
-            var cellToLeft = _mazeGrid[x-4, z];
+            var cellToLeft = _mazeGrid[x-1, z];
 
-            if(cellToLeft.IsVisted == false) //check if the cell to the left has been visited
+            if(cellToLeft.IsVisited == false) //check if the cell to the left has been visited
             {
                 yield return cellToLeft;
             }
         }
 
-        if(z + 4 < _mazeDepth)
+        if(z + 1 < _gridSize.y)
         {
-            var cellToFront = _mazeGrid[x, z + 4];
+            var cellToFront = _mazeGrid[x, z + 1];
 
-            if(cellToFront.IsVisted == false)
+            if(cellToFront.IsVisited == false)
             {
-                if(cellToFront.IsVisted == false) //check if the cell above/front has been visited
+                if(cellToFront.IsVisited == false) //check if the cell above/front has been visited
                 {
                     yield return cellToFront;
                 }
             }
         }
 
-        if(z - 4 >= 0)
+        if(z - 1 >= 0)
         {
-            var cellToBack = _mazeGrid[x, z - 4];
+            var cellToBack = _mazeGrid[x, z - 1];
 
-            if(z == _mazeDepth / 4)
-            {
-                
-            }
-
-            if(cellToBack.IsVisted == false) //check if the cell below/back has been visited
+            if(cellToBack.IsVisited == false) //check if the cell below/back has been visited
             {
                 yield return cellToBack;
             }
@@ -134,39 +136,29 @@ public class NewMazeGenerator : MonoBehaviour
             return;
         }
 
-        if(previousCell.transform.position.x < currentCell.transform.position.x) //the previous cell will check if it's to the left of the current one and if it is we know that the algorithm has gone from LEFT TO RIGHT
+        if(previousCell.x < currentCell.x) //the previous cell will check if it's to the left of the current one and if it is we know that the algorithm has gone from LEFT TO RIGHT
         {
             previousCell.ClearRightWall(); //since it's gone from left to right, prev to current, we clear the prev right wall and the current left wall
             currentCell.ClearLeftWall();
             return;
         }
 
-        if(previousCell.transform.position.x > currentCell.transform.position.x) //the previous cell will check if it's to the right of the current one and if it is we know that the algorithm has gone from RIGHT TO LEFT
+        if(previousCell.x > currentCell.x) //the previous cell will check if it's to the right of the current one and if it is we know that the algorithm has gone from RIGHT TO LEFT
         {
           previousCell.ClearLeftWall(); //clears current right wall and prev left wall
           currentCell.ClearRightWall();  
         }
 
-        if(previousCell.transform.position.z < currentCell.transform.position.z) //the previous cell will check if it's above the current one and if it is we know that the algorithm has gone from BACK TO FRONT
+        if(previousCell.z < currentCell.z) //the previous cell will check if it's above the current one and if it is we know that the algorithm has gone from BACK TO FRONT
         {
             previousCell.ClearFrontWall(); //clears the current back wall and prev front wall
             currentCell.ClearBackWall();
         }
 
-        if(previousCell.transform.position.z > currentCell.transform.position.z) //the previous cell will check if it's below the current one and if it is we know that the algorithm has gone from FRONT TO BACK
+        if(previousCell.z > currentCell.z) //the previous cell will check if it's below the current one and if it is we know that the algorithm has gone from FRONT TO BACK
         {
             previousCell.ClearBackWall(); //clears the current front wall and the prev back wall
             currentCell.ClearFrontWall();
         }
-    }
-
-    private void entrance(MazeCell currentCell)
-    {
-        currentCell.ClearBackWall();
-    }
-
-    private void exits(MazeCell currentCell)
-    {
-        currentCell.ClearFrontWall();
     }
 }
