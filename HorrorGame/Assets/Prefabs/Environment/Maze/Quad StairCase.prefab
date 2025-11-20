@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7485689719688338155}
+  - component: {fileID: 4324241113043491744}
   m_Layer: 0
   m_Name: Quad StairCase
   m_TagString: Untagged
@@ -33,6 +34,18 @@ Transform:
   - {fileID: 6936222788167018678}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4324241113043491744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8655930277210952977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88b620d8e7987641aeff4f6f2680cbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MazeCell
 --- !u!1001 &1596158845920835380
 PrefabInstance:
   m_ObjectHideFlags: 0
