@@ -294,6 +294,11 @@ public class SUPERCharacterAIO : NetworkBehaviour{
     [Space(18)]
     public bool enableGroundingDebugging = false, enableMovementDebugging = false, enableMouseAndCameraDebugging = false, enableVaultDebugging = false;
     #endregion
+
+    public override void OnStartAuthority() {
+        //playerCamera.SetActive(true);
+    }
+
     void Start(){
         if(!isLocalPlayer) return;
         
@@ -423,8 +428,8 @@ public class SUPERCharacterAIO : NetworkBehaviour{
         if(!isLocalPlayer) return;
 
         if(!controllerPaused){
-        #region Input
-        #if ENABLE_INPUT_SYSTEM
+                #region Input
+#if ENABLE_INPUT_SYSTEM
             MouseXY.x = Mouse.current.delta.y.ReadValue()/50;
             MouseXY.y = Mouse.current.delta.x.ReadValue()/50;
             
@@ -448,18 +453,22 @@ public class SUPERCharacterAIO : NetworkBehaviour{
                 slideInput_Momentary = Keyboard.current[slideKey].isPressed;
                 slideInput_FrameOf = Keyboard.current[slideKey].wasPressedThisFrame;
              }
-            #if SAIO_ENABLE_PARKOUR
+#if SAIO_ENABLE_PARKOUR
             vaultInput = Keyboard.current[VaultKey].isPressed;
-            #endif
+#endif
             MovInput.x = Keyboard.current.aKey.isPressed ? -1 : Keyboard.current.dKey.isPressed ? 1 : 0;
             MovInput.y = Keyboard.current.wKey.isPressed ? 1 : Keyboard.current.sKey.isPressed ? -1 : 0;
-        #else
+#else
             //camera
-            MouseXY.x = Input.GetAxis("Mouse Y");
-            MouseXY.y = Input.GetAxis("Mouse X");
-            mouseScrollWheel = Input.GetAxis("Mouse ScrollWheel");
-            perspecTog = Input.GetKeyDown(perspectiveSwitchingKey_L);
-            interactInput =Input.GetKeyDown(interactKey_L);
+            if (enableCameraControl)
+            {
+                MouseXY.x = Input.GetAxis("Mouse Y");
+                MouseXY.y = Input.GetAxis("Mouse X");
+                mouseScrollWheel = Input.GetAxis("Mouse ScrollWheel");
+                perspecTog = Input.GetKeyDown(perspectiveSwitchingKey_L);
+                interactInput =Input.GetKeyDown(interactKey_L);        
+            }
+            
             //movement
 
             jumpInput_Momentary = Input.GetKey(jumpKey_L);
@@ -596,11 +605,14 @@ public class SUPERCharacterAIO : NetworkBehaviour{
             #endregion
 
             #region Camera
-            RotateView(MouseXY, Sensitivity, rotationWeight);
-             if(cameraPerspective == PerspectiveModes._3rdPerson){
-                UpdateBodyRotation_3rdPerson();
-                UpdateCameraPosition_3rdPerson();
+            if(enableCameraControl){
+                RotateView(MouseXY, Sensitivity, rotationWeight);
+                if(cameraPerspective == PerspectiveModes._3rdPerson){
+                    UpdateBodyRotation_3rdPerson();
+                    UpdateCameraPosition_3rdPerson();
+                } 
             }
+            
   
             #endregion
         }
