@@ -32,6 +32,7 @@ public class SUPERCharacterAIO : NetworkBehaviour{
     //
     //Both
     public Camera playerCamera;
+    public GameObject cameraHolder;
     public bool  enableCameraControl = true, lockAndHideMouse = true, autoGenerateCrosshair = true, showCrosshairIn3rdPerson = false, drawPrimitiveUI = false;
     public Sprite crosshairSprite;
     public PerspectiveModes cameraPerspective = PerspectiveModes._1stPerson;
@@ -296,7 +297,7 @@ public class SUPERCharacterAIO : NetworkBehaviour{
     #endregion
 
     public override void OnStartAuthority() {
-        //playerCamera.SetActive(true);
+        cameraHolder.SetActive(true);
     }
 
     void Start(){
@@ -1716,6 +1717,7 @@ public class SuperFPEditor : Editor{
         EditorGUILayout.BeginVertical(BoxPanel);
         t.enableCameraControl = EditorGUILayout.ToggleLeft(new GUIContent("Enable Camera Control","Should the player have control over the camera?"),t.enableCameraControl);
         t.playerCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Player Camera", "The Camera Attached to the Player."),t.playerCamera,typeof(Camera),true);
+        t.cameraHolder = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Camera Holder", "The Game Object Holding the Camera."), t.cameraHolder,typeof(GameObject),true);
         t.cameraPerspective = (PerspectiveModes)EditorGUILayout.EnumPopup(new GUIContent("Camera Perspective Mode", "The current perspective of the character."),t.cameraPerspective);
         //if(t.cameraPerspective == PerspectiveModes._3rdPerson){EditorGUILayout.HelpBox("3rd Person perspective is currently very experimental. Bugs and other adverse effects may occur.",MessageType.Info);}
         

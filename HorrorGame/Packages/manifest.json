@@ -4,6 +4,7 @@
     "com.heathen.systemcore": "https://github.com/heathen-engineering/SystemCore.git?path=/com.heathen.systemcore",
     "com.mirror.steamworks.net": "https://github.com/Chykary/FizzySteamworks.git?path=/com.mirror.steamworks.net",
     "com.rlabrecque.steamworks.net": "https://github.com/rlabrecque/Steamworks.NET.git?path=/com.rlabrecque.steamworks.net#2025.161.0",
+    "com.unity.cinemachine": "3.1.5",
     "com.unity.collab-proxy": "2.10.0",
     "com.unity.dedicated-server": "1.6.1",
     "com.unity.ide.rider": "3.0.37",
