@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Mirror;
 
+// This file is not currently in use
+
 public class PlayerCamera : NetworkBehaviour
 {
     public GameObject cameraHolder;
