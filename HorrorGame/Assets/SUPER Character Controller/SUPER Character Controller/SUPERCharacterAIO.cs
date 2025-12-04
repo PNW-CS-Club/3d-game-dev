@@ -625,7 +625,8 @@ public class SUPERCharacterAIO : NetworkBehaviour{
     }
  
     #region Camera Functions
-    void RotateView(Vector2 yawPitchInput, float inputSensitivity, float cameraWeight){    
+    void RotateView(Vector2 yawPitchInput, float inputSensitivity, float cameraWeight){
+        
         switch (viewInputMethods){
             
             case ViewInputModes.Traditional:{  
@@ -675,7 +676,8 @@ public class SUPERCharacterAIO : NetworkBehaviour{
         }
         
     }
-    public void RotateView(Vector3 AbsoluteEulerAngles, bool SmoothRotation){  
+    public void RotateView(Vector3 AbsoluteEulerAngles, bool SmoothRotation){
+
         switch (cameraPerspective){
 
             case (PerspectiveModes._1stPerson):{
