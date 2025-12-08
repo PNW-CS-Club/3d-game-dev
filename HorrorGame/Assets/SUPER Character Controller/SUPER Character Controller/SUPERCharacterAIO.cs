@@ -1,8 +1,8 @@
 //Original Code Author: Aedan Graves
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 using UnityEngine.UI;
 using System.Linq;
 #if UNITY_EDITOR
@@ -20,7 +20,7 @@ using UnityEngine.InputSystem.Interactions;
 // more camera animations
 namespace SUPERCharacter{
 [RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(CapsuleCollider))][AddComponentMenu("SUPER Character/SUPER Character Controller")]
-public class SUPERCharacterAIO : MonoBehaviour{
+public class SUPERCharacterAIO : NetworkBehaviour{
     #region Variables
 
     public bool controllerPaused = false;
@@ -32,6 +32,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
     //
     //Both
     public Camera playerCamera;
+    public GameObject cameraHolder;
     public bool  enableCameraControl = true, lockAndHideMouse = true, autoGenerateCrosshair = true, showCrosshairIn3rdPerson = false, drawPrimitiveUI = false;
     public Sprite crosshairSprite;
     public PerspectiveModes cameraPerspective = PerspectiveModes._1stPerson;
@@ -294,8 +295,13 @@ public class SUPERCharacterAIO : MonoBehaviour{
     [Space(18)]
     public bool enableGroundingDebugging = false, enableMovementDebugging = false, enableMouseAndCameraDebugging = false, enableVaultDebugging = false;
     #endregion
+
+    public override void OnStartAuthority() {
+        cameraHolder.SetActive(true);
+    }
+
     void Start(){
-   
+        if(!isLocalPlayer) return;
         
         
         #region Camera
@@ -420,9 +426,11 @@ public class SUPERCharacterAIO : MonoBehaviour{
         
     }
     void Update(){
+        if(!isLocalPlayer) return;
+
         if(!controllerPaused){
-        #region Input
-        #if ENABLE_INPUT_SYSTEM
+                #region Input
+#if ENABLE_INPUT_SYSTEM
             MouseXY.x = Mouse.current.delta.y.ReadValue()/50;
             MouseXY.y = Mouse.current.delta.x.ReadValue()/50;
             
@@ -446,18 +454,22 @@ public class SUPERCharacterAIO : MonoBehaviour{
                 slideInput_Momentary = Keyboard.current[slideKey].isPressed;
                 slideInput_FrameOf = Keyboard.current[slideKey].wasPressedThisFrame;
              }
-            #if SAIO_ENABLE_PARKOUR
+#if SAIO_ENABLE_PARKOUR
             vaultInput = Keyboard.current[VaultKey].isPressed;
-            #endif
+#endif
             MovInput.x = Keyboard.current.aKey.isPressed ? -1 : Keyboard.current.dKey.isPressed ? 1 : 0;
             MovInput.y = Keyboard.current.wKey.isPressed ? 1 : Keyboard.current.sKey.isPressed ? -1 : 0;
-        #else
+#else
             //camera
-            MouseXY.x = Input.GetAxis("Mouse Y");
-            MouseXY.y = Input.GetAxis("Mouse X");
-            mouseScrollWheel = Input.GetAxis("Mouse ScrollWheel");
-            perspecTog = Input.GetKeyDown(perspectiveSwitchingKey_L);
-            interactInput =Input.GetKeyDown(interactKey_L);
+            if (enableCameraControl)
+            {
+                MouseXY.x = Input.GetAxis("Mouse Y");
+                MouseXY.y = Input.GetAxis("Mouse X");
+                mouseScrollWheel = Input.GetAxis("Mouse ScrollWheel");
+                perspecTog = Input.GetKeyDown(perspectiveSwitchingKey_L);
+                interactInput =Input.GetKeyDown(interactKey_L);        
+            }
+            
             //movement
 
             jumpInput_Momentary = Input.GetKey(jumpKey_L);
@@ -578,6 +590,8 @@ public class SUPERCharacterAIO : MonoBehaviour{
         #endregion
     }
     void FixedUpdate() {
+        if(!isLocalPlayer) return;
+
         if(!controllerPaused){
 
             
@@ -592,11 +606,14 @@ public class SUPERCharacterAIO : MonoBehaviour{
             #endregion
 
             #region Camera
-            RotateView(MouseXY, Sensitivity, rotationWeight);
-             if(cameraPerspective == PerspectiveModes._3rdPerson){
-                UpdateBodyRotation_3rdPerson();
-                UpdateCameraPosition_3rdPerson();
+            if(enableCameraControl){
+                RotateView(MouseXY, Sensitivity, rotationWeight);
+                if(cameraPerspective == PerspectiveModes._3rdPerson){
+                    UpdateBodyRotation_3rdPerson();
+                    UpdateCameraPosition_3rdPerson();
+                } 
             }
+            
   
             #endregion
         }
@@ -723,7 +740,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
             }break;
         }
     }
-    public void ChangePerspective(PerspectiveModes newPerspective = PerspectiveModes._1stPerson){
+    public void ChangePerspective(PerspectiveModes newPerspective = PerspectiveModes._1stPerson){   
         switch(newPerspective){
             case PerspectiveModes._1stPerson:{
                 StopCoroutine("SmoothRot");
@@ -779,7 +796,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
             }
         }
     }
-    void HeadbobCycleCalculator(){
+    void HeadbobCycleCalculator(){ 
         if(enableHeadbob){
             if(!isIdle && currentGroundInfo.isGettingGroundInfo && !isSliding){
                 headbobWarmUp = Mathf.MoveTowards(headbobWarmUp, 1,Time.deltaTime*5);
@@ -796,8 +813,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
             if(StepCycle>(headbobCyclePosition*3)){StepCycle = headbobCyclePosition+0.5f;}
         }
     }
-    void UpdateCameraPosition_3rdPerson(){
-
+    void UpdateCameraPosition_3rdPerson(){ 
         //Camera Obstacle Check
         cameraObstCheck= new Ray(headPos+(quatHeadRot*(Vector3.forward*capsule.radius)), quatHeadRot*-Vector3.forward); 
         if(Physics.SphereCast(cameraObstCheck, 0.5f, out cameraObstResult,maxCameraDistInternal, cameraObstructionIgnore,QueryTriggerInteraction.Ignore)){
@@ -818,7 +834,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
         playerCamera.transform.rotation = quatHeadRot;
     }
 
-    void UpdateBodyRotation_3rdPerson(){
+    void UpdateBodyRotation_3rdPerson(){ 
          //if is moving, rotate capsule to match camera forward   //change button down to bool of isFiring or isTargeting
         if(!isIdle && !isSliding && currentGroundInfo.isGettingGroundInfo){
             transform.rotation = (Quaternion.Euler(0,Mathf.MoveTowardsAngle(p_Rigidbody.rotation.eulerAngles.y,(Mathf.Atan2(InputDir.x,InputDir.z)*Mathf.Rad2Deg),10), 0));
@@ -1703,6 +1719,7 @@ public class SuperFPEditor : Editor{
         EditorGUILayout.BeginVertical(BoxPanel);
         t.enableCameraControl = EditorGUILayout.ToggleLeft(new GUIContent("Enable Camera Control","Should the player have control over the camera?"),t.enableCameraControl);
         t.playerCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Player Camera", "The Camera Attached to the Player."),t.playerCamera,typeof(Camera),true);
+        t.cameraHolder = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Camera Holder", "The Game Object Holding the Camera."), t.cameraHolder,typeof(GameObject),true);
         t.cameraPerspective = (PerspectiveModes)EditorGUILayout.EnumPopup(new GUIContent("Camera Perspective Mode", "The current perspective of the character."),t.cameraPerspective);
         //if(t.cameraPerspective == PerspectiveModes._3rdPerson){EditorGUILayout.HelpBox("3rd Person perspective is currently very experimental. Bugs and other adverse effects may occur.",MessageType.Info);}
         
