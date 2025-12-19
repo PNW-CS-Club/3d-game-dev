@@ -40,8 +40,10 @@ public class SUPERCharacterAIO : NetworkBehaviour{
     public bool automaticallySwitchPerspective = true;
     #if ENABLE_INPUT_SYSTEM
     public Key perspectiveSwitchingKey = Key.Q;
+    public Key toggleMouseLockKey = Key.Escape;
     #else
     public KeyCode perspectiveSwitchingKey_L = KeyCode.None;
+    public KeyCode toggleMouseLockKey_L = KeyCode.Escape;
     #endif
 
     public MouseInputInversionModes mouseInputInversion;
@@ -431,6 +433,10 @@ public class SUPERCharacterAIO : NetworkBehaviour{
         if(!controllerPaused){
                 #region Input
 #if ENABLE_INPUT_SYSTEM
+            if (toggleMouseLockKey != Key.None && Keyboard.current[toggleMouseLockKey].wasPressedThisFrame) {
+                Cursor.lockState = (Cursor.lockState == CursorLockMode.Locked) ? CursorLockMode.None : CursorLockMode.Locked;
+            }
+            
             MouseXY.x = Mouse.current.delta.y.ReadValue()/50;
             MouseXY.y = Mouse.current.delta.x.ReadValue()/50;
             
