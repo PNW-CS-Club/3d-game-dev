@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Roughness Map
+  m_Name: Rough Demo
   m_Shader: {fileID: -6465566751694194690, guid: 008a3c6924ad491469be9efb877f5630, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -45,7 +45,19 @@ Material:
         m_Texture: {fileID: 2800000, guid: f9df1fd7113d2ee429dcf9778230be37, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Ambient_Occlusion:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Displacement_Map:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Displacement_Map_N_A:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Emission_Map:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -63,6 +75,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Occlusion_Map_NW:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Opacity_Alpha_Map:
+        m_Texture: {fileID: 2800000, guid: a45bfdc3a504c26498322612174b6796, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Opacity_Map:
@@ -87,17 +103,21 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Alpha_Cutoff: 0.54
+    - _Emission_Power: 0
     - _Metallic_Intensity: 1
-    - _Normal_Strength: 2
+    - _Normal_Strength: 1.54
     - _Occlusion_Strength: 0
     - _Occlusion_Strength_NW: 0
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Roughness_Intensity: 1
     - _Strength: 0
     - _Use_Metallic_Map: 1
     m_Colors:
     - _Base_Albedo_Color_Map: {r: 1, g: 1, b: 1, a: 1}
     - _Base_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Emission_Color: {r: 0, g: 0, b: 0, a: 1}
     - _Offset: {r: 1, g: 1, b: 0, a: 0}
     - _Tiling: {r: 0.2, g: 0.2, b: 0, a: 0}
   m_BuildTextureStacks: []
