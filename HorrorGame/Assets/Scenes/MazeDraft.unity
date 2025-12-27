@@ -46427,10 +46427,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b5bfc503d014d84e9881326543991fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMazeGenerator
-  _mazeCellPrefab: {fileID: 2689786892837654519, guid: 03852d63669944845973c70e8e656d5a, type: 3}
-  _gridSize: {x: 10, y: 10}
-  _cellSize: {x: 4, y: 4}
+  _mazeCellPrefab: {fileID: 0}
+  _gridSize: {x: 20, y: 20}
+  _cellSize: {x: 6, y: 6}
   entranceOffset: 5
+  KeyLocation: {fileID: 9149166541308621938, guid: 90d870373d80a0c42a1b9d0e37fa972e, type: 3}
 --- !u!4 &1293287015
 Transform:
   m_ObjectHideFlags: 0
@@ -83954,6 +83955,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28c226fa06a23fd40a2c5ec9e6cd7351, type: 3}
+--- !u!1001 &8450063950447864698
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2062844490593890683, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+      propertyPath: m_Name
+      value: Maze Cell 6 x 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5832142278477992796, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 34.409267
+      objectReference: {fileID: 0}
+    - target: {fileID: 5832142278477992796, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5832142278477992796, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 34.56932
+      objectReference: {fileID: 0}
+    - target: {fileID: 5832142278477992796, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5832142278477992796, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5832142278477992796, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5832142278477992796, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5832142278477992796, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5832142278477992796, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5832142278477992796, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
 --- !u!1001 &8885973425011063201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84862,3 +84920,4 @@ SceneRoots:
   - {fileID: 1037602909}
   - {fileID: 955266047}
   - {fileID: 1293287015}
+  - {fileID: 8450063950447864698}

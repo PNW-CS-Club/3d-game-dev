@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Collections;
 using UnityEngine;
 
 public class NewMazeGenerator : MonoBehaviour
@@ -10,15 +11,19 @@ public class NewMazeGenerator : MonoBehaviour
     [SerializeField]
     private MazeCell _mazeCellPrefab;
     
-    [SerializeField] private Vector2Int _gridSize = new(10, 10); 
+    [SerializeField] private Vector2Int _gridSize = new(10, 10); //this is the size of the grid
 
-    [SerializeField] private Vector2 _cellSize = new(4f, 4f);
+    [SerializeField] private Vector2 _cellSize = new(4f, 4f); //this the size of the object that we're using
     [SerializeField] private int entranceOffset = 5;
+
+    [SerializeField]
+    private GameObject KeyLocation;
 
     private MazeCell[,] _mazeGrid; //this will hold the grid of cells
 
     IEnumerator Start()
     {
+
         _mazeGrid = new MazeCell[_gridSize.x, _gridSize.y];
 
         for(int x = 0; x < _gridSize.x; x++)
@@ -38,6 +43,9 @@ public class NewMazeGenerator : MonoBehaviour
         
         MazeCell exitCell = _mazeGrid[entranceOffset, _gridSize.y - 1];
         exitCell.ClearFrontWall();
+
+        RandomSpawnPoint();
+
     }
 
     private IEnumerator GenerateMaze(MazeCell previousCell, MazeCell currentCell) //this method will called recursilvey to make sure that everything has been visited in teh maze
@@ -159,6 +167,15 @@ public class NewMazeGenerator : MonoBehaviour
         {
             previousCell.ClearBackWall(); //clears the current front wall and the prev back wall
             currentCell.ClearFrontWall();
+        }
+    }
+
+    private void RandomSpawnPoint()
+    {
+        for(int i = 0; i < 1; i++) //this is where we'll place the random shelf for the keys
+        {
+            Vector3 randomSpawnPoint = new Vector3(Random.Range(0, _gridSize.x), 0, Random.Range(0, _gridSize.y));
+            Instantiate(KeyLocation, randomSpawnPoint, Quaternion.identity);
         }
     }
 }
