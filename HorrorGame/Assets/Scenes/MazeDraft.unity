@@ -11999,6 +11999,17 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!114 &378650911 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 945564996735064363, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+  m_PrefabInstance: {fileID: 8450063950447864698}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88b620d8e7987641aeff4f6f2680cbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MazeCell
 --- !u!43 &381234463
 Mesh:
   m_ObjectHideFlags: 0
@@ -21610,6 +21621,19 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &646816758 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7332619349029312341, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+  m_PrefabInstance: {fileID: 8450063950447864698}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &646816761
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646816758}
+  m_Mesh: {fileID: 0}
 --- !u!43 &666055911
 Mesh:
   m_ObjectHideFlags: 0
@@ -46484,11 +46508,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b5bfc503d014d84e9881326543991fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMazeGenerator
-  _mazeCellPrefab: {fileID: 945564996735064363, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+  _mazeCellPrefab: {fileID: 378650911}
   _gridSize: {x: 20, y: 20}
   _cellSize: {x: 6, y: 6}
-  entranceOffset: 5
-  KeyLocation: {fileID: 9149166541308621938, guid: 90d870373d80a0c42a1b9d0e37fa972e, type: 3}
+  entranceOffset: 10
+  KeyLocation: {fileID: 6218661305488540040, guid: 8da94b0bdffbf9840af8e87e7149bfe8, type: 3}
 --- !u!4 &1293287015
 Transform:
   m_ObjectHideFlags: 0
@@ -46498,7 +46522,7 @@ Transform:
   m_GameObject: {fileID: 1293287013}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.56674, y: 0, z: 50.2083}
+  m_LocalPosition: {x: 20, y: 22, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -84223,6 +84247,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 750062844473019081, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+      propertyPath: m_Size.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 750062844473019081, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+      propertyPath: m_Size.z
+      value: 6.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2062844490593890683, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
       propertyPath: m_Name
       value: Maze Cell 6 x 6
@@ -84233,7 +84265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5832142278477992796, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5832142278477992796, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -84267,10 +84299,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8379445653090626417, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+      propertyPath: m_Size.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8379445653090626417, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+      propertyPath: m_Size.z
+      value: 6.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8682453211143169956, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+      propertyPath: m_Size.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8682453211143169956, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+      propertyPath: m_Size.z
+      value: 6.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7332619349029312341, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 646816761}
   m_SourcePrefab: {fileID: 100100000, guid: 7e533a889e950684a9eb2e0a6cffdb4b, type: 3}
 --- !u!1001 &8885973425011063201
 PrefabInstance:
