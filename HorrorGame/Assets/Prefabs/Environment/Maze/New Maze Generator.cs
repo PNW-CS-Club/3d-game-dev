@@ -11,10 +11,10 @@ public class NewMazeGenerator : MonoBehaviour
     [SerializeField]
     private MazeCell _mazeCellPrefab;
     
-    [SerializeField] private Vector2Int _gridSize = new(20, 20); //this is the size of the grid
+    [SerializeField] private Vector2Int _gridSize; //this is the size of the grid
 
     [SerializeField] private Vector2 _cellSize = new(6f, 6f); //this the size of the object that we're using
-    [SerializeField] private int entranceOffset = 5;
+    [SerializeField] private int entranceOffset;
 
     [SerializeField]
     private GameObject KeyLocation;
@@ -172,10 +172,13 @@ public class NewMazeGenerator : MonoBehaviour
 
     private void RandomSpawnPoint()
     {
+        
         for(int i = 0; i < 2; i++) //this is where we'll place the random shelf for the keys
         {
-            Vector3 randomSpawnPoint = new Vector3(Random.Range(0, _gridSize.x), 0, Random.Range(0, _gridSize.y));
-            Instantiate(KeyLocation, randomSpawnPoint, Quaternion.identity);
+            int x = Random.Range(0, _gridSize.x);
+            int z = Random.Range(0, _gridSize.y);
+            Vector3 randomSpawnPoint = new Vector3(x * _cellSize.x, 0, z * _cellSize.y);
+            Instantiate(KeyLocation, randomSpawnPoint, Quaternion.identity, transform);
         }
     }
 }
