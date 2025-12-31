@@ -4176,8 +4176,8 @@
     "m_ObjectId": "7809a7d2875d4a40a86b4efd561d18dc",
     "m_Title": "Metallic Map",
     "m_Position": {
-        "x": 421.3335266113281,
-        "y": 823.33349609375
+        "x": 421.33349609375,
+        "y": 823.3331298828125
     }
 }
 
@@ -4293,7 +4293,7 @@
     "m_ObjectId": "809ffe6da37846c0affe4150c6d7107f",
     "m_Title": "Normal Map",
     "m_Position": {
-        "x": -972.66650390625,
+        "x": -972.666748046875,
         "y": -211.33331298828126
     }
 }
@@ -4489,8 +4489,8 @@
     "m_ObjectId": "894ecad60ece4834888b0f293bce5cf0",
     "m_Title": "Tiling and Offset",
     "m_Position": {
-        "x": -1010.66650390625,
-        "y": 679.3334350585938
+        "x": -1010.666748046875,
+        "y": 679.3333740234375
     }
 }
 
@@ -4811,8 +4811,8 @@
     "m_ObjectId": "966b0cb814c64cd79d8743c5b973a788",
     "m_Title": "Ambient Occlusion",
     "m_Position": {
-        "x": -189.33349609375,
-        "y": 1060.6666259765625
+        "x": -189.333251953125,
+        "y": 1060.66650390625
     }
 }
 
@@ -5775,8 +5775,8 @@
     "m_ObjectId": "b6fdc61a463442c4a3a388dccc73fb12",
     "m_Title": "Roughness Map Conversion to Smoothness Map",
     "m_Position": {
-        "x": 462.66668701171877,
-        "y": 118.66668701171875
+        "x": 462.666748046875,
+        "y": 118.6666259765625
     }
 }
 
@@ -6465,8 +6465,8 @@
     "m_ObjectId": "d75027ed009d40769b586a821ce81f4f",
     "m_Title": "Opacity/ Alpha Map",
     "m_Position": {
-        "x": -539.9998779296875,
-        "y": 677.3335571289063
+        "x": -540.0,
+        "y": 677.3333740234375
     }
 }
 
@@ -6651,8 +6651,8 @@
     "m_ObjectId": "e1cbe5e0652e475d953df086747c0f59",
     "m_Title": "Emission",
     "m_Position": {
-        "x": -1578.66650390625,
-        "y": -29.333314895629884
+        "x": -1578.6666259765625,
+        "y": -29.3333740234375
     }
 }
 
@@ -7284,7 +7284,7 @@
     "m_Title": "Displacement (halted for now, displacement is good for HDRP not URP, which we are on)",
     "m_Position": {
         "x": -346.66650390625,
-        "y": -1412.0
+        "y": -1412.0001220703125
     }
 }
 
@@ -7355,8 +7355,8 @@
     "m_ObjectId": "f7e30eaedca145d3880777372b640db2",
     "m_Title": "Albedo / Color Map",
     "m_Position": {
-        "x": -97.33349609375,
-        "y": -183.33331298828126
+        "x": -97.333251953125,
+        "y": -183.33343505859376
     }
 }
 
