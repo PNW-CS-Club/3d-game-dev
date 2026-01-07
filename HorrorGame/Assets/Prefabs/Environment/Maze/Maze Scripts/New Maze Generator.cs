@@ -11,13 +11,28 @@ public class NewMazeGenerator : MonoBehaviour
     [SerializeField]
     private MazeCell _mazeCellPrefab;
     
-    [SerializeField] private Vector2Int _gridSize; //this is the size of the grid
+    [SerializeField] private Vector2Int _gridSize; //this is the size of the grid or of the board
 
     [SerializeField] private Vector2 _cellSize = new(6f, 6f); //this the size of the object that we're using
     [SerializeField] private int entranceOffset;
 
     [SerializeField]
     private GameObject KeyLocation;
+
+    [SerializeField]
+    private GameObject RedKey;
+
+    [SerializeField]
+    private GameObject GreenKey;
+
+    [SerializeField]
+    private GameObject BlueKey;
+
+    [SerializeField]
+    private GameObject BlackKey;
+
+    [SerializeField]
+    private GameObject ExitDoor;
 
     private MazeCell[,] _mazeGrid; //this will hold the grid of cells
 
@@ -173,12 +188,42 @@ public class NewMazeGenerator : MonoBehaviour
     private void RandomSpawnPoint()
     {
         
-        for(int i = 0; i < 2; i++) //this is where we'll place the random shelf for the keys
+        // for(int i = 0; i < 4; i++) //this is where we'll place the random shelf for the keys
+        // {
+        //     int x = Random.Range(0, _gridSize.x);
+        //     int z = Random.Range(0, _gridSize.y);
+        //     Vector3 randomSpawnPoint = new Vector3(x * _cellSize.x, 0, z * _cellSize.y);
+        //     Instantiate(KeyLocation, randomSpawnPoint, Quaternion.identity, transform);
+        //     Instantiate(Key, randomSpawnPoint, Quaternion.identity, transform);
+        // }
+
+
+        for(int i = 0; i < 1; i++)
         {
-            int x = Random.Range(0, _gridSize.x);
-            int z = Random.Range(0, _gridSize.y);
-            Vector3 randomSpawnPoint = new Vector3(x * _cellSize.x, 0, z * _cellSize.y);
-            Instantiate(KeyLocation, randomSpawnPoint, Quaternion.identity, transform);
+
+            int x = _gridSize.x - 1;
+            int z = _gridSize.y - 1;
+
+            float gridMaxX = x * _cellSize.x;
+            float gridMaxZ = z * _cellSize.y;
+
+            Vector3 spawnpoint1 = new Vector3(0,0,0);
+            Vector3 spawnpoint2 = new Vector3(0, 0, gridMaxZ);
+            Vector3 spawnpoint3 = new Vector3(gridMaxX, 0, 0);
+            Vector3 spawnpoint4 = new Vector3(gridMaxX, 0, gridMaxZ);
+
+            Instantiate(KeyLocation, spawnpoint1, Quaternion.identity, transform);
+            Instantiate(RedKey, spawnpoint1, Quaternion.identity, transform);
+
+            Instantiate(KeyLocation, spawnpoint2, Quaternion.identity, transform);
+            Instantiate(GreenKey, spawnpoint2, Quaternion.identity, transform);
+
+            Instantiate(KeyLocation, spawnpoint3, Quaternion.identity, transform);
+            Instantiate(BlueKey, spawnpoint3, Quaternion.identity, transform);
+
+            Instantiate(KeyLocation, spawnpoint4, Quaternion.identity, transform);
+            Instantiate(BlackKey, spawnpoint4, Quaternion.identity, transform);
+
         }
     }
 }
