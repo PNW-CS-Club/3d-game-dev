@@ -272,12 +272,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c88b620d8e7987641aeff4f6f2680cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MazeCell
-  _leftWall: {fileID: 0}
-  _rightWall: {fileID: 0}
-  _frontWall: {fileID: 0}
-  _backWall: {fileID: 0}
-  _unvisitedBlock: {fileID: 0}
-  _floor: {fileID: 0}
+  _leftWall: {fileID: 1662908320528594916}
+  _rightWall: {fileID: 5142958347273175570}
+  _frontWall: {fileID: 8671349461177592387}
+  _backWall: {fileID: 4692360975525264010}
+  _unvisitedBlock: {fileID: 8509608608461300731}
+  _floor: {fileID: 1648724543326314193}
   x: 0
   z: 0
 --- !u!1 &4692360975525264010
