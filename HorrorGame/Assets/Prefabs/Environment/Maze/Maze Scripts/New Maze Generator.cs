@@ -34,6 +34,9 @@ public class NewMazeGenerator : MonoBehaviour
     [SerializeField]
     private GameObject ExitDoor;
 
+    [SerializeField] private float podiumYOffset;
+    [SerializeField] private Vector3 keyOffset;
+
     private MazeCell[,] _mazeGrid; //this will hold the grid of cells
 
     IEnumerator Start()
@@ -59,7 +62,7 @@ public class NewMazeGenerator : MonoBehaviour
         MazeCell exitCell = _mazeGrid[entranceOffset, _gridSize.y - 1];
         exitCell.ClearFrontWall();
 
-        RandomSpawnPoint();
+        SpawnObjects();
 
     }
 
@@ -185,7 +188,7 @@ public class NewMazeGenerator : MonoBehaviour
         }
     }
 
-    private void RandomSpawnPoint()
+    private void SpawnObjects()
     {
         
         // for(int i = 0; i < 4; i++) //this is where we'll place the random shelf for the keys
@@ -198,32 +201,39 @@ public class NewMazeGenerator : MonoBehaviour
         // }
 
 
-        for(int i = 0; i < 1; i++)
-        {
+        int x = _gridSize.x - 1;
+        int z = _gridSize.y - 1;
 
-            int x = _gridSize.x - 1;
-            int z = _gridSize.y - 1;
+        float gridMaxX = x * _cellSize.x;
+        float gridMaxZ = z * _cellSize.y;
 
-            float gridMaxX = x * _cellSize.x;
-            float gridMaxZ = z * _cellSize.y;
+        Vector3 spawnpoint1 = new Vector3(0,0,0);
+        Vector3 spawnpoint2 = new Vector3(0, 0, gridMaxZ);
+        Vector3 spawnpoint3 = new Vector3(gridMaxX, 0, 0);
+        Vector3 spawnpoint4 = new Vector3(gridMaxX, 0, gridMaxZ);
+        Vector3 point = new Vector3();
+        
+        Vector3 podiumOffset = Vector3.up * podiumYOffset; // Vector3.up is shorthand for writing Vector3(0, 1, 0)
+        
+        Vector3 doorSpawnpoint = new Vector3(entranceOffset * _cellSize.x, 0, gridMaxZ);
 
-            Vector3 spawnpoint1 = new Vector3(0,0,0);
-            Vector3 spawnpoint2 = new Vector3(0, 0, gridMaxZ);
-            Vector3 spawnpoint3 = new Vector3(gridMaxX, 0, 0);
-            Vector3 spawnpoint4 = new Vector3(gridMaxX, 0, gridMaxZ);
+        var exitDoorObject = Instantiate(ExitDoor, doorSpawnpoint, Quaternion.identity, transform);
+        DoorScript doorScript = exitDoorObject.GetComponent<DoorScript>();
 
-            Instantiate(KeyLocation, spawnpoint1, Quaternion.identity, transform);
-            Instantiate(RedKey, spawnpoint1, Quaternion.identity, transform);
+        Instantiate(KeyLocation, spawnpoint1 + podiumOffset, Quaternion.identity, transform);
+        var redKeyObject = Instantiate(RedKey, spawnpoint1 + keyOffset, Quaternion.identity, transform);
+        redKeyObject.GetComponent<KeyScript>().doorScript = doorScript;
 
-            Instantiate(KeyLocation, spawnpoint2, Quaternion.identity, transform);
-            Instantiate(GreenKey, spawnpoint2, Quaternion.identity, transform);
+        Instantiate(KeyLocation, spawnpoint2 + podiumOffset, Quaternion.identity, transform);
+        var greenKeyObject = Instantiate(GreenKey, spawnpoint2 + keyOffset, Quaternion.identity, transform);
+        greenKeyObject.GetComponent<KeyScript>().doorScript = doorScript;
 
-            Instantiate(KeyLocation, spawnpoint3, Quaternion.identity, transform);
-            Instantiate(BlueKey, spawnpoint3, Quaternion.identity, transform);
+        Instantiate(KeyLocation, spawnpoint3 + podiumOffset, Quaternion.identity, transform);
+        var blueKeyObject = Instantiate(BlueKey, spawnpoint3 + keyOffset, Quaternion.identity, transform);
+        blueKeyObject.GetComponent<KeyScript>().doorScript = doorScript;
 
-            Instantiate(KeyLocation, spawnpoint4, Quaternion.identity, transform);
-            Instantiate(BlackKey, spawnpoint4, Quaternion.identity, transform);
-
-        }
+        Instantiate(KeyLocation, spawnpoint4 + podiumOffset, Quaternion.identity, transform);
+        var blackKeyObject = Instantiate(BlackKey, spawnpoint4 + keyOffset, Quaternion.identity, transform);
+        blackKeyObject.GetComponent<KeyScript>().doorScript = doorScript;
     }
 }

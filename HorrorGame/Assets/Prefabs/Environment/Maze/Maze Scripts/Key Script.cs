@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class KeyScript : MonoBehaviour
 {
-    public Component DoorCollider;
+    public DoorScript doorScript;
+    public bool wasCollected = false;
 
-    void OnTriggerStay()
+    void OnTriggerStay(Collider other)
     {
-        if (Input.GetKey(KeyCode.E))
-        {
-            DoorCollider.GetComponent<BoxCollider>().enabled = true;
+        if (other.CompareTag("Player") && !wasCollected) {
+            wasCollected = true;
+            Debug.Log(gameObject.name + " is collected");
+            doorScript.Increment();
         }
     }
 }

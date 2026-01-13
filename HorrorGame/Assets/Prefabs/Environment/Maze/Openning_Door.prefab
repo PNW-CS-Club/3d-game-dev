@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2523275171281819805}
-  - component: {fileID: 7146972146354982320}
+  - component: {fileID: 7657960654077974065}
+  - component: {fileID: 7773117310696231886}
   m_Layer: 0
   m_Name: Openning_Door
   m_TagString: Untagged
@@ -26,30 +27,49 @@ Transform:
   m_GameObject: {fileID: 6620511708043911786}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.19, y: 0, z: 34.6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6162978059206712211}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &7146972146354982320
-Animation:
+--- !u!114 &7657960654077974065
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6620511708043911786}
   m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: b9f36430e59768648ab58486e4830f69, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: b9f36430e59768648ab58486e4830f69, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e799278fd1bda9d40a8794eb7c3d6b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorScript
+  animator: {fileID: 7773117310696231886}
+  numKeys: 4
+--- !u!95 &7773117310696231886
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620511708043911786}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cdf3c46d859eb93469a270de36cc1a1a, type: 2}
+  m_CullingMode: 0
   m_UpdateMode: 0
-  m_CullingType: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &4197658942436508967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58,6 +78,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2523275171281819805}
     m_Modifications:
+    - target: {fileID: 3664542931927477872, guid: cabff69b3061644418338077acc09706, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1980ffca013a2804e9ee2d978e65deff, type: 2}
     - target: {fileID: 4113694912453695904, guid: cabff69b3061644418338077acc09706, type: 3}
       propertyPath: m_Name
       value: Door
@@ -68,19 +92,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8054229940547182260, guid: cabff69b3061644418338077acc09706, type: 3}
       propertyPath: m_LocalScale.z
-      value: 6.2000003
+      value: 5.8
       objectReference: {fileID: 0}
     - target: {fileID: 8054229940547182260, guid: cabff69b3061644418338077acc09706, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.28030443
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8054229940547182260, guid: cabff69b3061644418338077acc09706, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 8054229940547182260, guid: cabff69b3061644418338077acc09706, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.2697296
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8054229940547182260, guid: cabff69b3061644418338077acc09706, type: 3}
       propertyPath: m_LocalRotation.w

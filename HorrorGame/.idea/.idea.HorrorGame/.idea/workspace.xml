@@ -4,7 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86d14777-abab-4424-b7b0-8e468570b47c" name="Changes" comment="" />
+    <list default="true" id="86d14777-abab-4424-b7b0-8e468570b47c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Maze Scripts/Door Script.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Maze Scripts/Door Script.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Maze Scripts/Door_Opening_Animation_Test.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Maze Scripts/Door_Opening_Animation_Test.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Maze Scripts/Key Script.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Maze Scripts/Key Script.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Maze Scripts/New Maze Generator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Maze Scripts/New Maze Generator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Openning_Door.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Openning_Door.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Podium.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Podium.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/asset_store/key_lock/material/m_lock_01.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/asset_store/key_lock/material/m_lock_01.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/asset_store/key_lock/prefab/prf_key_01_blue.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/asset_store/key_lock/prefab/prf_key_01_blue.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/asset_store/key_lock/prefab/prf_v_key_02_black.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/asset_store/key_lock/prefab/prf_v_key_02_black.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/asset_store/key_lock/prefab/prf_v_key_03_green.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/asset_store/key_lock/prefab/prf_v_key_03_green.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/asset_store/key_lock/prefab/prf_v_key_04_red.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/asset_store/key_lock/prefab/prf_v_key_04_red.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MazeDraft.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MazeDraft.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,6 +56,14 @@
   }
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Builds\HorrorGame.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\Gunnar\Files\Unity\3d-game-dev\HorrorGame\Builds" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath C:\Users\Gunnar\Files\Unity\3d-game-dev\HorrorGame -debugCodeOptimization" />
@@ -89,6 +116,7 @@
       <option name="presentableId" value="Default" />
       <updated>1763674472229</updated>
       <workItem from="1763674476734" duration="4703000" />
+      <workItem from="1768341338856" duration="5971000" />
     </task>
     <servers />
   </component>
