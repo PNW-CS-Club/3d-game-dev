@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Unity.Collections;
 using UnityEngine;
 
@@ -211,27 +212,35 @@ public class NewMazeGenerator : MonoBehaviour
         Vector3 spawnpoint2 = new Vector3(0, 0, gridMaxZ);
         Vector3 spawnpoint3 = new Vector3(gridMaxX, 0, 0);
         Vector3 spawnpoint4 = new Vector3(gridMaxX, 0, gridMaxZ);
-        Vector3 point = new Vector3();
         
         Vector3 podiumOffset = Vector3.up * podiumYOffset; // Vector3.up is shorthand for writing Vector3(0, 1, 0)
         
         Vector3 doorSpawnpoint = new Vector3(entranceOffset * _cellSize.x, 0, gridMaxZ);
 
+        //spawn point for the exit door
         var exitDoorObject = Instantiate(ExitDoor, doorSpawnpoint, Quaternion.identity, transform);
         DoorScript doorScript = exitDoorObject.GetComponent<DoorScript>();
+        //we're creating an exitDoorObject from the door that we have created
+        //with the exitDoorObject we're getting the script that is attahced to that door and naming it as door script
 
+        //red key
         Instantiate(KeyLocation, spawnpoint1 + podiumOffset, Quaternion.identity, transform);
         var redKeyObject = Instantiate(RedKey, spawnpoint1 + keyOffset, Quaternion.identity, transform);
-        redKeyObject.GetComponent<KeyScript>().doorScript = doorScript;
+        redKeyObject.GetComponent<KeyScript>().doorScript = doorScript; //the = doorScript is telling it which door to control which is the one door
+        
+        //we're getting the keyscript and inside that keyscript we store a reference to the doorScript
 
+        //green key
         Instantiate(KeyLocation, spawnpoint2 + podiumOffset, Quaternion.identity, transform);
         var greenKeyObject = Instantiate(GreenKey, spawnpoint2 + keyOffset, Quaternion.identity, transform);
         greenKeyObject.GetComponent<KeyScript>().doorScript = doorScript;
 
+        //blue key
         Instantiate(KeyLocation, spawnpoint3 + podiumOffset, Quaternion.identity, transform);
         var blueKeyObject = Instantiate(BlueKey, spawnpoint3 + keyOffset, Quaternion.identity, transform);
         blueKeyObject.GetComponent<KeyScript>().doorScript = doorScript;
 
+        //black key
         Instantiate(KeyLocation, spawnpoint4 + podiumOffset, Quaternion.identity, transform);
         var blackKeyObject = Instantiate(BlackKey, spawnpoint4 + keyOffset, Quaternion.identity, transform);
         blackKeyObject.GetComponent<KeyScript>().doorScript = doorScript;
