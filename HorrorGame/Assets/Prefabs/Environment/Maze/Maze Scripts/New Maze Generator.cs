@@ -218,15 +218,17 @@ public class NewMazeGenerator : MonoBehaviour
         Vector3 doorSpawnpoint = new Vector3(entranceOffset * _cellSize.x, 0, gridMaxZ);
 
         //spawn point for the exit door
-        var exitDoorObject = Instantiate(ExitDoor, doorSpawnpoint, Quaternion.identity, transform);
+        GameObject exitDoorObject = Instantiate(ExitDoor, doorSpawnpoint, Quaternion.identity, transform);
         DoorScript doorScript = exitDoorObject.GetComponent<DoorScript>();
-        //we're creating an exitDoorObject from the door that we have created
-        //with the exitDoorObject we're getting the script that is attahced to that door and naming it as door script
+        //we're storing the door that we have created in the 'exitDoorObject' variable 
+        //with the exitDoorObject we're getting the script that is attached to that door and storing it in 'doorScript'
+        // The script is an object that has the type of 'DoorScript'
 
         //red key
         Instantiate(KeyLocation, spawnpoint1 + podiumOffset, Quaternion.identity, transform);
         var redKeyObject = Instantiate(RedKey, spawnpoint1 + keyOffset, Quaternion.identity, transform);
-        redKeyObject.GetComponent<KeyScript>().doorScript = doorScript; //the = doorScript is telling it which door to control which is the one door
+        KeyScript redKeyScript = redKeyObject.GetComponent<KeyScript>();
+        redKeyScript.doorScript = doorScript; //the = doorScript is telling it which door to control which is the one door
         
         //we're getting the keyscript and inside that keyscript we store a reference to the doorScript
 
