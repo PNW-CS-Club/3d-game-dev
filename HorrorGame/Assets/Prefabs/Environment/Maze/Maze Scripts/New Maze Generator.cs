@@ -1,48 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using Unity.Collections;
 using UnityEngine;
 
 public class NewMazeGenerator : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
     [SerializeField]
     private MazeCell _mazeCellPrefab;
     
+    [Header("Maze Configuration")]
     [SerializeField] private Vector2Int _gridSize; //this is the size of the grid or of the board
 
-    [SerializeField] private Vector2 _cellSize = new(6f, 6f); //this the size of the object that we're using
+    [SerializeField] private Vector2 _cellSize = new(6f, 6f); //this the size of each cell in the maze
     [SerializeField] private int entranceOffset;
 
+    [Header("Spawnable Prefabs")]
     [SerializeField]
-    private GameObject KeyLocation;
+    private GameObject podiumPrefab;
 
     [SerializeField]
-    private GameObject RedKey;
+    private GameObject redKeyPrefab;
 
     [SerializeField]
-    private GameObject GreenKey;
+    private GameObject greenKeyPrefab;
 
     [SerializeField]
-    private GameObject BlueKey;
+    private GameObject blueKeyPrefab;
 
     [SerializeField]
-    private GameObject BlackKey;
+    private GameObject blackKeyPrefab;
 
     [SerializeField]
-    private GameObject ExitDoor;
+    private GameObject exitDoorPrefab;
 
+    [Header("Key Settings")]
     [SerializeField] private float podiumYOffset;
     [SerializeField] private Vector3 keyOffset;
+    private Vector3 podiumOffset;
 
     private MazeCell[,] _mazeGrid; //this will hold the grid of cells
 
+    
     IEnumerator Start()
     {
-
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        
+        podiumOffset = Vector3.up * podiumYOffset; // Vector3.up is shorthand for writing Vector3(0, 1, 0)
+        
         _mazeGrid = new MazeCell[_gridSize.x, _gridSize.y];
 
         for(int x = 0; x < _gridSize.x; x++)
@@ -67,6 +71,7 @@ public class NewMazeGenerator : MonoBehaviour
 
     }
 
+    
     private IEnumerator GenerateMaze(MazeCell previousCell, MazeCell currentCell) //this method will called recursilvey to make sure that everything has been visited in teh maze
     {
         currentCell.Visit(); //this will make all the current walls visible
@@ -87,6 +92,7 @@ public class NewMazeGenerator : MonoBehaviour
         } while(nextCell != null);
     }
 
+    
     private MazeCell GetNextUnvisitedCell(MazeCell currentCell) //this will allow the current cell to move onto a neighboring cell, it will return a random neighboring cell at random
     {
         var unvisitedCells = GetUnvisitedCells(currentCell);
@@ -102,6 +108,7 @@ public class NewMazeGenerator : MonoBehaviour
         //only return one thing
     }
 
+    
     private IEnumerable<MazeCell> GetUnvisitedCells(MazeCell currentCell) //this will return all the unvisited neighbors, curerntCell will check around to see all the unvisited neighbors
     {
         int x = currentCell.x;
@@ -153,6 +160,7 @@ public class NewMazeGenerator : MonoBehaviour
         }
     }
 
+    
     private void ClearWalls(MazeCell previousCell, MazeCell currentCell) //the previous cell is following behind the current cell
     {
         //IMPORTANT
@@ -189,62 +197,55 @@ public class NewMazeGenerator : MonoBehaviour
         }
     }
 
+    
     private void SpawnObjects()
     {
+        /*** Determine grid dimensions ***/
         
-        // for(int i = 0; i < 4; i++) //this is where we'll place the random shelf for the keys
-        // {
-        //     int x = Random.Range(0, _gridSize.x);
-        //     int z = Random.Range(0, _gridSize.y);
-        //     Vector3 randomSpawnPoint = new Vector3(x * _cellSize.x, 0, z * _cellSize.y);
-        //     Instantiate(KeyLocation, randomSpawnPoint, Quaternion.identity, transform);
-        //     Instantiate(Key, randomSpawnPoint, Quaternion.identity, transform);
-        // }
-
-
         int x = _gridSize.x - 1;
         int z = _gridSize.y - 1;
 
         float gridMaxX = x * _cellSize.x;
         float gridMaxZ = z * _cellSize.y;
 
-        Vector3 spawnpoint1 = new Vector3(0,0,0);
-        Vector3 spawnpoint2 = new Vector3(0, 0, gridMaxZ);
-        Vector3 spawnpoint3 = new Vector3(gridMaxX, 0, 0);
-        Vector3 spawnpoint4 = new Vector3(gridMaxX, 0, gridMaxZ);
         
-        Vector3 podiumOffset = Vector3.up * podiumYOffset; // Vector3.up is shorthand for writing Vector3(0, 1, 0)
+        /*** Spawn the exit door ***/
         
         Vector3 doorSpawnpoint = new Vector3(entranceOffset * _cellSize.x, 0, gridMaxZ);
 
         //spawn point for the exit door
-        GameObject exitDoorObject = Instantiate(ExitDoor, doorSpawnpoint, Quaternion.identity, transform);
+        GameObject exitDoorObject = Instantiate(exitDoorPrefab, doorSpawnpoint, Quaternion.identity, transform);
         DoorScript doorScript = exitDoorObject.GetComponent<DoorScript>();
         //we're storing the door that we have created in the 'exitDoorObject' variable 
         //with the exitDoorObject we're getting the script that is attached to that door and storing it in 'doorScript'
         // The script is an object that has the type of 'DoorScript'
 
-        //red key
-        Instantiate(KeyLocation, spawnpoint1 + podiumOffset, Quaternion.identity, transform);
-        var redKeyObject = Instantiate(RedKey, spawnpoint1 + keyOffset, Quaternion.identity, transform);
-        KeyScript redKeyScript = redKeyObject.GetComponent<KeyScript>();
-        redKeyScript.doorScript = doorScript; //the = doorScript is telling it which door to control which is the one door
         
-        //we're getting the keyscript and inside that keyscript we store a reference to the doorScript
+        /*** Spawn the four keys ***/
+        
+        Vector3 spawnpoint1 = new Vector3(0,0,0);
+        Vector3 spawnpoint2 = new Vector3(0, 0, gridMaxZ);
+        Vector3 spawnpoint3 = new Vector3(gridMaxX, 0, 0);
+        Vector3 spawnpoint4 = new Vector3(gridMaxX, 0, gridMaxZ);
+        
+        SpawnKeyAndPodium(redKeyPrefab, "Red Key", spawnpoint1, doorScript);
+        SpawnKeyAndPodium(greenKeyPrefab, "Green Key", spawnpoint2, doorScript);
+        SpawnKeyAndPodium(blueKeyPrefab, "Blue Key", spawnpoint3, doorScript);
+        SpawnKeyAndPodium(blackKeyPrefab, "Black Key", spawnpoint4, doorScript);
+    }
 
-        //green key
-        Instantiate(KeyLocation, spawnpoint2 + podiumOffset, Quaternion.identity, transform);
-        var greenKeyObject = Instantiate(GreenKey, spawnpoint2 + keyOffset, Quaternion.identity, transform);
-        greenKeyObject.GetComponent<KeyScript>().doorScript = doorScript;
-
-        //blue key
-        Instantiate(KeyLocation, spawnpoint3 + podiumOffset, Quaternion.identity, transform);
-        var blueKeyObject = Instantiate(BlueKey, spawnpoint3 + keyOffset, Quaternion.identity, transform);
-        blueKeyObject.GetComponent<KeyScript>().doorScript = doorScript;
-
-        //black key
-        Instantiate(KeyLocation, spawnpoint4 + podiumOffset, Quaternion.identity, transform);
-        var blackKeyObject = Instantiate(BlackKey, spawnpoint4 + keyOffset, Quaternion.identity, transform);
-        blackKeyObject.GetComponent<KeyScript>().doorScript = doorScript;
+    
+    private void SpawnKeyAndPodium(GameObject keyPrefab, string keyObjectName, Vector3 spawnPoint, DoorScript doorScript) 
+    {
+        // spawn the podium for the key to sit on
+        Instantiate(podiumPrefab, spawnPoint + podiumOffset, Quaternion.identity, transform);
+        
+        // spawn an instance of the given key prefab on top of the podium
+        GameObject keyObject = Instantiate(keyPrefab, spawnPoint + keyOffset, Quaternion.identity, transform);
+        keyObject.name = keyObjectName; // rename the key object in the scene to the name passed into this function
+        
+        // get the keyscript, and inside that keyscript, store a reference to the doorScript
+        KeyScript keyScript = keyObject.GetComponent<KeyScript>();
+        keyScript.doorScript = doorScript; //the = doorScript is telling it which door to control which is the one door
     }
 }
