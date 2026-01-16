@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class NewMazeGenerator : MonoBehaviour
 {
@@ -247,5 +249,39 @@ public class NewMazeGenerator : MonoBehaviour
         // get the keyscript, and inside that keyscript, store a reference to the doorScript
         KeyScript keyScript = keyObject.GetComponent<KeyScript>();
         keyScript.doorScript = doorScript; //the = doorScript is telling it which door to control which is the one door
+    }
+
+
+    private void OnDrawGizmos() {
+        // draws a grid in the editor that is the same size as the grid that will spawn in at runtime
+
+        Gizmos.color = Color.purple;
+        List<Vector3> points = new List<Vector3>();
+
+        float startX = 0;
+        float endX = _gridSize.x * _cellSize.x;
+        float startZ = 0;
+        float endZ = _gridSize.y * _cellSize.y;
+        
+        // this offset of half of a cell is applied to every point
+        Vector3 offset = new Vector3(_cellSize.x * -0.5f, 0, _cellSize.y * -0.5f);
+        
+        // calculate the lines going along the z-axis
+        for (int i = 0; i <= _gridSize.x; i++) {
+            float x = _cellSize.x * i;
+            points.Add(offset + new Vector3(x, 0, startZ));
+            points.Add(offset + new Vector3(x, 0, endZ));
+        }
+        
+        // calculate the lines going along the x-axis
+        for (int j = 0; j <= _gridSize.y; j++) {
+            float z = _cellSize.y * j;
+            points.Add(offset + new Vector3(startX, 0, z));
+            points.Add(offset + new Vector3(endX, 0, z));
+        }
+
+        // draw the lines all at oncce
+        ReadOnlySpan<Vector3> pointSpan = new(points.ToArray());
+        Gizmos.DrawLineList(pointSpan);
     }
 }
