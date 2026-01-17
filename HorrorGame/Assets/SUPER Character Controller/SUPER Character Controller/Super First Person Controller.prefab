@@ -331,6 +331,7 @@ MonoBehaviour:
   syncInterval: 0
   controllerPaused: 0
   playerCamera: {fileID: 6817638360860843945}
+  cameraHolder: {fileID: 0}
   enableCameraControl: 1
   lockAndHideMouse: 1
   autoGenerateCrosshair: 1
@@ -340,15 +341,16 @@ MonoBehaviour:
   cameraPerspective: 0
   automaticallySwitchPerspective: 0
   perspectiveSwitchingKey: 31
+  toggleMouseLockKey: 60
   mouseInputInversion: 0
-  Sensitivity: 4
+  sensitivity: 4
   rotationWeight: 2
   verticalRotationRange: 170
   standingEyeHeight: 0.8
   crouchingEyeHeight: 0.469
   viewInputMethods: 0
-  FOVKickAmount: 10
-  FOVSensitivityMultiplier: 0.74
+  fovKickAmount: 10
+  fovSensitivityMultiplier: 0.74
   rotateCharacterToCameraForward: 0
   maxCameraDistance: 8
   cameraObstructionIgnore:
@@ -388,11 +390,11 @@ MonoBehaviour:
   canJump: 1
   holdJump: 0
   jumpEnhancements: 0
-  Jumped: 0
+  jumped: 0
   jumpKey: 1
   jumpPower: 70
   airControlFactor: 1
-  decentMultiplier: 4.8
+  descentMultiplier: 4.8
   tapJumpMultiplier: 1
   isSliding: 0
   canSlide: 0
@@ -413,15 +415,15 @@ MonoBehaviour:
     groundInfluenceDirection: {x: 0, y: 0, z: 0}
     groundNormal_Averaged: {x: 0, y: 0, z: 0}
     groundNormal_Raw: {x: 0, y: 0, z: 0}
-    groundNormals_lowgrade: []
-    groundNormals_highgrade: []
+    groundNormals_lowGrade: []
+    groundNormals_highGrade: []
     groundTag: 
     groundMaterial: {fileID: 0}
     groundLayer: {fileID: 0}
     groundPhysicMaterial: {fileID: 0}
   enableStaminaSystem: 1
   jumpingDepletesStamina: 1
-  Stamina: 10
+  stamina: 10
   currentStaminaLevel: 0
   s_minimumStaminaToSprint: 5
   s_depletionSpeed: 10
@@ -431,15 +433,15 @@ MonoBehaviour:
   footstepTriggeringMode: 0
   stepTiming: 0.15
   footstepSoundSet: []
-  enableHeadbob: 1
-  headbobSpeed: 3
-  headbobPower: 2
-  ZTilt: 0.5
+  enableHeadBob: 1
+  headBobSpeed: 3
+  headBobPower: 2
+  zTilt: 0.5
   enableSurvivalStats: 0
   defaultSurvivalStats:
-    Health: 250
-    Hunger: 100
-    Hydration: 100
+    health: 250
+    hunger: 100
+    hydration: 100
     hasLowHealth: 0
     isStarving: 0
     isDehydrated: 0
@@ -447,9 +449,9 @@ MonoBehaviour:
   hungerDepletionRate: 1
   hydrationDepletionRate: 2
   currentSurvivalStats:
-    Health: 250
-    Hunger: 100
-    Hydration: 100
+    health: 250
+    hunger: 100
+    hydration: 100
     hasLowHealth: 0
     isStarving: 0
     isDehydrated: 0
