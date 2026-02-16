@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class NewMazeGenerator : MonoBehaviour
 {
     [SerializeField]
-    private MazeCell _mazeCellPrefab;
+    private GameObject mazeCellPrefab;
     
     [Header("Maze Configuration")]
     [SerializeField] private Vector2Int _gridSize; //this is the size of the grid or of the board
@@ -45,8 +45,6 @@ public class NewMazeGenerator : MonoBehaviour
     
     IEnumerator Start()
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        
         podiumOffset = Vector3.up * podiumYOffset; // Vector3.up is shorthand for writing Vector3(0, 1, 0)
         
         _mazeGrid = new MazeCell[_gridSize.x, _gridSize.y];
@@ -55,9 +53,12 @@ public class NewMazeGenerator : MonoBehaviour
         {
             for(int z = 0; z < _gridSize.y; z++)
             {
-                _mazeGrid[x, z] = Instantiate(_mazeCellPrefab, new Vector3(x * _cellSize.x, 0, z * _cellSize.y), Quaternion.identity, transform); //this will actually create the cell and store it in the _mazeGrid array
-                _mazeGrid[x, z].x = x;
-                _mazeGrid[x, z].z = z;
+                // this will actually create the cell and store it in the _mazeGrid array
+                GameObject mazeCellObj = Instantiate(mazeCellPrefab, new Vector3(x * _cellSize.x, 0, z * _cellSize.y), Quaternion.identity, transform);
+                MazeCell mazeCell = mazeCellObj.GetComponent<MazeCell>();
+                mazeCell.x = x;
+                mazeCell.z = z;
+                _mazeGrid[x, z] = mazeCell;
             }
         }
 
