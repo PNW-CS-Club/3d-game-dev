@@ -4,67 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86d14777-abab-4424-b7b0-8e468570b47c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/2 way intersection Roof.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/2 way intersection Roof.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/2 way intersection room itself no roof 1.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/2 way intersection room itself no roof 1.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/3 way intersection Roof.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/3 way intersection Roof.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/3 way intersection room itself  1.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/3 way intersection room itself  1.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/4 way intersection Roof 1.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/4 way intersection Roof 1.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/4 way intersection room itself.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/4 way intersection room itself.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Corner Path.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Corner Path.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Corner.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Corner.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Cube (13).prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Cube (13).prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Cube 1.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Cube 1.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Cube 2.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Cube 2.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Cube 3.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Cube 3.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Cube.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Cube.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Custom Door Way.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Custom Door Way.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Custom Stairs.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Custom Stairs.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Dead End.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Dead End.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Double Length Hallway.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Double Length Hallway.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Double Platform.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Double Platform.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Double Stair Case.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Double Stair Case.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Entire Stairs.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Entire Stairs.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/FloorColor.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/FloorColor.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Maze Cell 6 x 6 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Maze Cell 6 x 6 1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Maze Scripts/New Maze Generator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Maze Scripts/New Maze Generator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Opening Door.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Opening Door.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Quad StairCase.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Quad StairCase.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Second Stair Level.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Second Stair Level.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Single Entrance Stair Well With Stairs.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Single Entrance Stair Well With Stairs.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Single entrance stair well.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Single entrance stair well.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Stairs Platform.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Stairs Platform.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Straight Away.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/Straight Away.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/WallColor.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/Maze/WallColor.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MazeDraft.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MazeDraft.unity" afterDir="false" />
-    </list>
+    <list default="true" id="86d14777-abab-4424-b7b0-8e468570b47c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -160,7 +100,7 @@
       <workItem from="1768341338856" duration="6323000" />
       <workItem from="1768417358849" duration="778000" />
       <workItem from="1768546350630" duration="3173000" />
-      <workItem from="1771209158547" duration="350000" />
+      <workItem from="1771209158547" duration="743000" />
     </task>
     <servers />
   </component>
