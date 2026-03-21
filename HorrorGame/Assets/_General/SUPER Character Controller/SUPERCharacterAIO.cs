@@ -33,6 +33,7 @@ public class SUPERCharacterAIO : NetworkBehaviour{
     [Header("Camera Settings")]
     public Camera playerCamera;
     public GameObject cameraHolder;
+    public int targetFrameRate = 100;
     public bool  enableCameraControl = true, lockAndHideMouse = true, autoGenerateCrosshair = true, showCrosshairIn3rdPerson = false, drawPrimitiveUI = false;
     public Sprite crosshairSprite;
     public PerspectiveModes cameraPerspective = PerspectiveModes._1stPerson;
@@ -48,7 +49,7 @@ public class SUPERCharacterAIO : NetworkBehaviour{
 
     public MouseInputInversionModes mouseInputInversion;
     public float sensitivity = 8;
-    public float rotationWeight = 4;
+    public float rotationWeight = 2;
     public float verticalRotationRange = 170.0f;
     public float standingEyeHeight = 0.8f;
     public float crouchingEyeHeight = 0.25f;
@@ -197,7 +198,9 @@ public class SUPERCharacterAIO : NetworkBehaviour{
 
     //All
     #endif
+#pragma warning disable CS0414 // Field is assigned but its value is never used
     private bool doingPosInterp, doingCamInterp;
+#pragma warning restore CS0414 // Field is assigned but its value is never used
     #endregion
 
     #region Stamina System
@@ -232,7 +235,7 @@ public class SUPERCharacterAIO : NetworkBehaviour{
 
     [Range(1.0f, 5.0f)] public float headBobSpeed = 3;
     [Range(1.0f,5.0f)] public float headBobPower = 2;
-    [Range(0.0f,3.0f)] public float zTilt = 3;
+    [Range(0.0f,3.0f)] public float zTilt = 1;
 
     //
     //Internal
@@ -303,6 +306,9 @@ public class SUPERCharacterAIO : NetworkBehaviour{
         
         
         #region Camera
+
+        Application.targetFrameRate = targetFrameRate;
+        
         maxCameraDistInternal = maxCameraDistance;
         initialCameraFOV = playerCamera.fieldOfView;
         headBobCameraPosition = Vector3.up*standingEyeHeight;
@@ -1827,6 +1833,7 @@ public class SuperFPEditor : Editor{
         t.enableCameraControl = EditorGUILayout.ToggleLeft(new GUIContent("Enable Camera Control","Should the player have control over the camera?"), t.enableCameraControl);
         t.playerCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Player Camera", "The Camera Attached to the Player."), t.playerCamera,typeof(Camera),true);
         t.cameraHolder = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Camera Holder", "The Game Object Holding the Camera."), t.cameraHolder,typeof(GameObject),true);
+        t.targetFrameRate = EditorGUILayout.IntField(new GUIContent("Target FPS", "The frame rate the application will try to run at."), t.targetFrameRate);
         t.cameraPerspective = (PerspectiveModes)EditorGUILayout.EnumPopup(new GUIContent("Camera Perspective Mode", "The current perspective of the character."), t.cameraPerspective);
         
         if (cameraSettingsFoldout) {
