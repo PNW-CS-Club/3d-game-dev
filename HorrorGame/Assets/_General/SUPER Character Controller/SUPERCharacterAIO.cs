@@ -54,7 +54,6 @@ public class SUPERCharacterAIO : NetworkBehaviour{
     public float crouchingEyeHeight = 0.25f;
 
     //First person
-    public ViewInputModes viewInputMethods;
     public float fovKickAmount = 10; 
     public float fovSensitivityMultiplier = 0.74f;
 
@@ -230,8 +229,9 @@ public class SUPERCharacterAIO : NetworkBehaviour{
     //Public
     //
     public bool enableHeadBob = true;
-    [Range(1.0f,5.0f)] public float headBobSpeed = 0.5f;
-    [Range(1.0f,5.0f)] public float headBobPower = 0.25f;
+
+    [Range(1.0f, 5.0f)] public float headBobSpeed = 3;
+    [Range(1.0f,5.0f)] public float headBobPower = 2;
     [Range(0.0f,3.0f)] public float zTilt = 3;
 
     //
@@ -563,7 +563,7 @@ public class SUPERCharacterAIO : NetworkBehaviour{
             if (cameraPerspective == PerspectiveModes._1stPerson) {
                 inputDirUnscaled =
                     transform.forward*MovInput.y +
-                    transform.right*(viewInputMethods == ViewInputModes.Traditional ? MovInput.x : 0);
+                    transform.right*MovInput.x;
             }
             else {
                 inputDirUnscaled = Quaternion.AngleAxis(HeadRotDirForInput, Vector3.up) *
@@ -637,57 +637,39 @@ public class SUPERCharacterAIO : NetworkBehaviour{
     
     void RotateView(Vector2 yawPitchInput, float inputSensitivity, float cameraWeight) {
         
-        switch (viewInputMethods) {
-            
-            case ViewInputModes.Traditional:{  
-                yawPitchInput.x *= (mouseInputInversion is MouseInputInversionModes.X or MouseInputInversionModes.Both) ? 1 : -1;
-                yawPitchInput.y *= (mouseInputInversion is MouseInputInversionModes.Y or MouseInputInversionModes.Both) ? -1 : 1;
-                float maxDelta = Mathf.Min(5, 26 - cameraWeight) * 360;
-                switch(cameraPerspective) {
-                    case PerspectiveModes._1stPerson:{
-                        Vector2 targetAngles = new(playerCamera.transform.localEulerAngles.x, p_Rigidbody.rotation.eulerAngles.y);
-                        float fovMod = fovSensitivityMultiplier>0 && playerCamera.fieldOfView <= initialCameraFOV ? ((initialCameraFOV - playerCamera.fieldOfView)*(fovSensitivityMultiplier/10))+1 : 1;
-                        targetAngles = Vector2.SmoothDamp(targetAngles,
-                            targetAngles + yawPitchInput * (inputSensitivity * 5 / fovMod), 
-                            ref viewRotVelRef,
-                            Mathf.Pow(cameraWeight * fovMod, 2) * Time.fixedDeltaTime, 
-                            maxDelta, 
-                            Time.fixedDeltaTime);
-                        targetAngles.x = NormalizeAngle(targetAngles.x);
-                        targetAngles.x = Mathf.Clamp(targetAngles.x,-0.5f*verticalRotationRange,0.5f*verticalRotationRange);
-                        playerCamera.transform.localEulerAngles = (Vector3.right * targetAngles.x) + (Vector3.forward* (enableHeadBob? headBobCameraPosition.z : 0));
-                        p_Rigidbody.MoveRotation(Quaternion.Euler(Vector3.up*targetAngles.y));
-                    }break;
+        yawPitchInput.x *= (mouseInputInversion is MouseInputInversionModes.X or MouseInputInversionModes.Both) ? 1 : -1;
+        yawPitchInput.y *= (mouseInputInversion is MouseInputInversionModes.Y or MouseInputInversionModes.Both) ? -1 : 1;
+        float maxDelta = Mathf.Min(5, 26 - cameraWeight) * 360;
+        switch(cameraPerspective) {
+            case PerspectiveModes._1stPerson: {
+                Vector2 targetAngles = new(playerCamera.transform.localEulerAngles.x, p_Rigidbody.rotation.eulerAngles.y);
+                float fovMod = fovSensitivityMultiplier>0 && playerCamera.fieldOfView <= initialCameraFOV ? ((initialCameraFOV - playerCamera.fieldOfView)*(fovSensitivityMultiplier/10))+1 : 1;
+                targetAngles = Vector2.SmoothDamp(targetAngles,
+                    targetAngles + yawPitchInput * (inputSensitivity * 5 / fovMod), 
+                    ref viewRotVelRef,
+                    Mathf.Pow(cameraWeight * fovMod, 2) * Time.fixedDeltaTime, 
+                    maxDelta, 
+                    Time.fixedDeltaTime);
+                targetAngles.x = NormalizeAngle(targetAngles.x);
+                targetAngles.x = Mathf.Clamp(targetAngles.x,-0.5f*verticalRotationRange,0.5f*verticalRotationRange);
+                playerCamera.transform.localEulerAngles = (Vector3.right * targetAngles.x) + (Vector3.forward* (enableHeadBob? headBobCameraPosition.z : 0));
+                p_Rigidbody.MoveRotation(Quaternion.Euler(Vector3.up*targetAngles.y));
+            } break;
 
-                    case PerspectiveModes._3rdPerson:{
-                        headPos = transform.position + Vector3.up *standingEyeHeight;
-                        quatHeadRot = Quaternion.Euler(headRot);
-                        headRot = Vector3.SmoothDamp(headRot,
-                            headRot + (Vector3)yawPitchInput * (inputSensitivity * 5),
-                            ref cameraPosVelRef,
-                            Mathf.Pow(cameraWeight, 2) * Time.fixedDeltaTime,
-                            maxDelta,
-                            Time.fixedDeltaTime);
-                        headRot.y = NormalizeAngle(headRot.y);
-                        headRot.x = NormalizeAngle(headRot.x);
-                        headRot.x = Mathf.Clamp(headRot.x,-0.5f*verticalRotationRange,0.5f*verticalRotationRange);
-                    }break;
-                        
-                }
-            
-            }break;
-            
-            case ViewInputModes.Retro:{
-                yawPitchInput = Vector2.up * (Input.GetAxis("Horizontal") * (mouseInputInversion is MouseInputInversionModes.Y or MouseInputInversionModes.Both ? -1 : 1));
-                Vector2 targetAngles = new(playerCamera.transform.localEulerAngles.x, transform.localEulerAngles.y);
-                float fovMod = fovSensitivityMultiplier > 0 && playerCamera.fieldOfView <= initialCameraFOV ? ((initialCameraFOV - playerCamera.fieldOfView)*(fovSensitivityMultiplier/10))+1 : 1;
-                targetAngles += yawPitchInput * (inputSensitivity/fovMod);   
-                targetAngles.x = 0;
-                playerCamera.transform.localEulerAngles = Vector3.right*targetAngles.x + Vector3.forward*(enableHeadBob ? headBobCameraPosition.z : 0);
-                transform.localEulerAngles = Vector3.up * targetAngles.y;
-            }break;
+            case PerspectiveModes._3rdPerson: {
+                headPos = transform.position + Vector3.up *standingEyeHeight;
+                quatHeadRot = Quaternion.Euler(headRot);
+                headRot = Vector3.SmoothDamp(headRot,
+                    headRot + (Vector3)yawPitchInput * (inputSensitivity * 5),
+                    ref cameraPosVelRef,
+                    Mathf.Pow(cameraWeight, 2) * Time.fixedDeltaTime,
+                    maxDelta,
+                    Time.fixedDeltaTime);
+                headRot.y = NormalizeAngle(headRot.y);
+                headRot.x = NormalizeAngle(headRot.x);
+                headRot.x = Mathf.Clamp(headRot.x,-0.5f*verticalRotationRange,0.5f*verticalRotationRange);
+            } break;
         }
-        
     }
 
     public void RotateView(Vector3 absoluteEulerAngles, bool smoothRotation) {
@@ -1752,7 +1734,6 @@ public enum StatSelector { Health, Hunger, Hydration }
 public enum MatProfileType { Material, TerrainLayer, PhysicMaterial }
 public enum FootstepTriggeringMode { CalculatedTiming, CalledFromAnimations }
 public enum PerspectiveModes { _1stPerson, _3rdPerson }
-public enum ViewInputModes { Traditional, Retro }
 public enum MouseInputInversionModes { None, X, Y, Both }
 public enum GroundSpeedProfiles { Crouching, Walking, Sprinting, Sliding }
 public enum Stances { Standing, Crouching }
@@ -1877,7 +1858,6 @@ public class SuperFPEditor : Editor{
             EditorGUILayout.Space(20);
 
             if (t.cameraPerspective == PerspectiveModes._1stPerson) {
-                t.viewInputMethods = (ViewInputModes)EditorGUILayout.EnumPopup(new GUIContent("Camera Input Methods", "The input method used to rotate the camera."), t.viewInputMethods);
                 t.standingEyeHeight = EditorGUILayout.Slider(new GUIContent("Standing Eye Height", "The Eye height of the player measured from the center of the character's capsule and upwards."), t.standingEyeHeight,0,1);
                 t.crouchingEyeHeight = EditorGUILayout.Slider(new GUIContent("Crouching Eye Height", "The Eye height of the player measured from the center of the character's capsule and upwards."), t.crouchingEyeHeight,0,1);
                 t.fovKickAmount = EditorGUILayout.Slider(new GUIContent("FOV Kick Amount", "How much should the camera's FOV change based on the current movement speed?"), t.fovKickAmount,0,50);
