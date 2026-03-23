@@ -10,7 +10,6 @@ using UnityEditor;
 #endif
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Interactions;
 #endif
 
 // TODO
@@ -80,7 +79,7 @@ public class SUPERCharacterAIO : NetworkBehaviour{
     Image stamMeter, stamMeterBG;
     Image statsPanel, statsPanelBG;
     Image HealthMeter, HydrationMeter, HungerMeter;
-    Vector2 normalMeterSizeDelta = new Vector2(175,12), normalStamMeterSizeDelta = new Vector2(330,5);
+    Vector2 normalStamMeterSizeDelta = new Vector2(330,5);
     float internalEyeHeight;
 
     //First Person
@@ -227,7 +226,7 @@ public class SUPERCharacterAIO : NetworkBehaviour{
     [Space(18)]
     #endregion
     
-    #region  Headbob
+    #region Headbob
     //
     //Public
     //
@@ -246,21 +245,6 @@ public class SUPERCharacterAIO : NetworkBehaviour{
 
     #endregion
     
-    #region  Survival Stats
-    //
-    //Public
-    //
-    public bool enableSurvivalStats = true;
-    public SurvivalStats defaultSurvivalStats = new SurvivalStats();
-    public float statTickRate = 6.0f, hungerDepletionRate = 0.06f, hydrationDepletionRate = 0.14f;
-    public SurvivalStats currentSurvivalStats = new SurvivalStats();
-
-    //
-    //Internal
-    //
-    float StatTickTimer;
-    #endregion
-
     #region Interactable
     #if ENABLE_INPUT_SYSTEM
 
@@ -353,48 +337,6 @@ public class SUPERCharacterAIO : NetworkBehaviour{
                 stamMeter.rectTransform.anchoredPosition = new Vector2(0,22);
                 stamMeter.color = Color.white;
                 stamMeter.gameObject.SetActive(enableStaminaSystem);
-                //Stats Panel
-                statsPanel = new GameObject("Stats Panel").AddComponent<Image>();
-                statsPanel.rectTransform.sizeDelta = new Vector2(3,45);
-                statsPanel.transform.SetParent(canvas.transform);
-                statsPanel.rectTransform.anchorMin = new Vector2(0,0);
-                statsPanel.rectTransform.anchorMax = new Vector2(0,0);
-                statsPanel.rectTransform.anchoredPosition = new Vector2(12,33);
-                statsPanel.color = Color.clear;
-                statsPanel.gameObject.SetActive(enableSurvivalStats);
-                //Stats Panel BG
-                statsPanelBG = new GameObject("Stats Panel BG").AddComponent<Image>();
-                statsPanelBG.rectTransform.sizeDelta = new Vector2(175,45);
-                statsPanelBG.transform.SetParent(statsPanel.transform);
-                statsPanelBG.rectTransform.anchorMin = new Vector2(0,0);
-                statsPanelBG.rectTransform.anchorMax = new Vector2(1,0);
-                statsPanelBG.rectTransform.anchoredPosition = new Vector2(87,22);
-                statsPanelBG.color = Color.white*0.5f;
-                //Health Meter
-                HealthMeter = new GameObject("Health Meter").AddComponent<Image>();
-                HealthMeter.rectTransform.sizeDelta = normalMeterSizeDelta;
-                HealthMeter.transform.SetParent(statsPanel.transform);
-                HealthMeter.rectTransform.anchorMin = new Vector2(0,0);
-                HealthMeter.rectTransform.anchorMax = new Vector2(1,0);
-                HealthMeter.rectTransform.anchoredPosition = new Vector2(87,6);
-                HealthMeter.color =new Color32(211,0,0, 255);
-                //Hydration Meter
-                HydrationMeter = new GameObject("Hydration Meter").AddComponent<Image>();
-                HydrationMeter.rectTransform.sizeDelta = normalMeterSizeDelta;
-                HydrationMeter.transform.SetParent(statsPanel.transform);
-                HydrationMeter.rectTransform.anchorMin = new Vector2(0,0);
-                HydrationMeter.rectTransform.anchorMax = new Vector2(1,0);
-                HydrationMeter.rectTransform.anchoredPosition = new Vector2(87,22);
-                HydrationMeter.color =new Color32(0,194,255, 255);
-                //Hunger Meter
-                HungerMeter = new GameObject("Hunger Meter").AddComponent<Image>();
-                HungerMeter.rectTransform.sizeDelta = normalMeterSizeDelta;
-                HungerMeter.transform.SetParent(statsPanel.transform);
-                HungerMeter.rectTransform.anchorMin = new Vector2(0,0);
-                HungerMeter.rectTransform.anchorMax = new Vector2(1,0);
-                HungerMeter.rectTransform.anchoredPosition = new Vector2(87,38);
-                HungerMeter.color = new Color32(142,54,0, 255);
-                
             }
         }
         if (cameraPerspective == PerspectiveModes._3rdPerson && !showCrosshairIn3rdPerson) {
@@ -523,16 +465,7 @@ public class SUPERCharacterAIO : NetworkBehaviour{
                 }
             }
             if (drawPrimitiveUI) {
-                if (enableSurvivalStats) {
-                    if (!statsPanel.gameObject.activeSelf) { statsPanel.gameObject.SetActive(true); }
-
-                    HealthMeter.rectTransform.sizeDelta    = Vector2.Lerp(Vector2.up*12, normalMeterSizeDelta, currentSurvivalStats.health/defaultSurvivalStats.health);
-                    HydrationMeter.rectTransform.sizeDelta = Vector2.Lerp(Vector2.up*12, normalMeterSizeDelta, currentSurvivalStats.hydration/defaultSurvivalStats.hydration);
-                    HungerMeter.rectTransform.sizeDelta    = Vector2.Lerp(Vector2.up*12, normalMeterSizeDelta, currentSurvivalStats.hunger/defaultSurvivalStats.hunger);
-                } else { 
-                    if (statsPanel.gameObject.activeSelf)statsPanel.gameObject.SetActive(false);
-               
-                }
+                
                 if (enableStaminaSystem) {
                     if (!stamMeterBG.gameObject.activeSelf)stamMeterBG.gameObject.SetActive(true);
                     if (!stamMeter.gameObject.activeSelf)stamMeter.gameObject.SetActive(true);
@@ -586,9 +519,6 @@ public class SUPERCharacterAIO : NetworkBehaviour{
         
             //Footstep
             CalculateFootstepTriggers();
-
-            //Survival Stats
-            if (enableSurvivalStats && Time.time > StatTickTimer) { TickStats(); }
 
             //Interaction
             if (interactInput) { TryInteract(); }
@@ -1176,8 +1106,7 @@ public class SUPERCharacterAIO : NetworkBehaviour{
                         StopCoroutine("ApplyStance");
                         StartCoroutine(ApplyStance(stanceTransitionSpeed,Stances.Crouching));
                     } else if ((canSprint && sprintInput_FrameOf &&
-                                (!enableStaminaSystem || !jumpingDepletesStamina || currentStaminaLevel > s_minimumStaminaToSprint) &&
-                                (!enableSurvivalStats || (!currentSurvivalStats.isDehydrated && !currentSurvivalStats.isStarving))
+                                (!enableStaminaSystem || !jumpingDepletesStamina || currentStaminaLevel > s_minimumStaminaToSprint)
                                ) || sprintOverride) 
                     {
                         isCrouching = false;
@@ -1210,8 +1139,7 @@ public class SUPERCharacterAIO : NetworkBehaviour{
                         StartCoroutine(ApplyStance(stanceTransitionSpeed,Stances.Standing));
                     }
                     else if (((canSprint && sprintInput_FrameOf &&
-                               (!enableStaminaSystem || !jumpingDepletesStamina || currentStaminaLevel > s_minimumStaminaToSprint) &&
-                               (!enableSurvivalStats || (!currentSurvivalStats.isDehydrated && !currentSurvivalStats.isStarving))) 
+                               (!enableStaminaSystem || !jumpingDepletesStamina || currentStaminaLevel > s_minimumStaminaToSprint)) 
                               || sprintOverride) && OverheadCheck()) 
                     {
                         isCrouching = false;
@@ -1307,9 +1235,7 @@ public class SUPERCharacterAIO : NetworkBehaviour{
             } else if (!isSliding) { currentGroundMovementSpeed = GroundSpeedProfiles.Walking; }
             staminaIsChanging = true;
         }
-        else if (currentStaminaLevel != stamina &&
-                 !ignoreStamina &&
-                 (!enableSurvivalStats || (!currentSurvivalStats.isDehydrated && !currentSurvivalStats.isStarving))) {
+        else if (currentStaminaLevel != stamina && !ignoreStamina) {
             currentStaminaLevel = Mathf.MoveTowards(currentStaminaLevel, stamina, s_regenerationSpeed*Time.deltaTime);
             staminaIsChanging = true;
         } else { 
@@ -1449,64 +1375,6 @@ public class SUPERCharacterAIO : NetworkBehaviour{
         if (isVaulting) {VaultCheck();}
     }
     #endif
-    #endregion
-
-    #region Survival Stat Functions
-    public void TickStats() {
-        if (currentSurvivalStats.hunger>0) {
-            currentSurvivalStats.hunger = Mathf.Clamp(currentSurvivalStats.hunger-(hungerDepletionRate+(isSprinting&&!isIdle ? 0.1f:0)), 0, defaultSurvivalStats.hunger);
-            currentSurvivalStats.isStarving = (currentSurvivalStats.hunger<(defaultSurvivalStats.hunger/10));
-        }
-        if (currentSurvivalStats.hydration>0) {
-            currentSurvivalStats.hydration = Mathf.Clamp(currentSurvivalStats.hydration-(hydrationDepletionRate+(isSprinting&&!isIdle ? 0.1f:0)), 0, defaultSurvivalStats.hydration);
-            currentSurvivalStats.isDehydrated = (currentSurvivalStats.hydration<(defaultSurvivalStats.hydration/8));
-        }
-        currentSurvivalStats.hasLowHealth = (currentSurvivalStats.health<(defaultSurvivalStats.health/10));
-
-        StatTickTimer = Time.time + (60/statTickRate);
-    }
-    public void ImmediateStateChange(float amount, StatSelector stat=StatSelector.Health) {
-        switch (stat) {
-            case StatSelector.Health:{
-                currentSurvivalStats.health = Mathf.Clamp(currentSurvivalStats.health+amount,0,defaultSurvivalStats.health);
-                currentSurvivalStats.hasLowHealth = (currentSurvivalStats.health < defaultSurvivalStats.health/10);
-
-            }break;
-
-            case StatSelector.Hunger:{
-                currentSurvivalStats.hunger = Mathf.Clamp(currentSurvivalStats.hunger+amount,0,defaultSurvivalStats.hunger);
-                currentSurvivalStats.isStarving = (currentSurvivalStats.hunger < defaultSurvivalStats.hunger/10);
-            }break;
-
-            case StatSelector.Hydration:{
-                currentSurvivalStats.hydration = Mathf.Clamp(currentSurvivalStats.hydration+amount,0,defaultSurvivalStats.hydration);
-                currentSurvivalStats.isDehydrated = (currentSurvivalStats.hydration < defaultSurvivalStats.hydration/8);
-            }break;
-        }
-    }
-    public void LevelUpStat(float newMaxStatLevel, StatSelector stat = StatSelector.Health, bool refill = true) {
-        switch(stat) {
-            case StatSelector.Health:{
-                defaultSurvivalStats.health = Mathf.Clamp(newMaxStatLevel,0,newMaxStatLevel);
-                if (refill) {currentSurvivalStats.health = Mathf.Clamp(newMaxStatLevel,0,newMaxStatLevel);}
-                currentSurvivalStats.hasLowHealth = (currentSurvivalStats.health<(defaultSurvivalStats.health/10));
-
-            }break;
-            case StatSelector.Hunger:{
-                defaultSurvivalStats.hunger = Mathf.Clamp(newMaxStatLevel,0,newMaxStatLevel);
-                if (refill) {currentSurvivalStats.hunger = Mathf.Clamp(newMaxStatLevel,0,newMaxStatLevel);}
-                currentSurvivalStats.isStarving = (currentSurvivalStats.hunger<(defaultSurvivalStats.hunger/10));
-
-            }break;
-            case StatSelector.Hydration:{
-                defaultSurvivalStats.hydration = Mathf.Clamp(newMaxStatLevel,0,newMaxStatLevel);
-                if (refill) {currentSurvivalStats.hydration = Mathf.Clamp(newMaxStatLevel,0,newMaxStatLevel);}
-                currentSurvivalStats.isDehydrated = (currentSurvivalStats.hydration<(defaultSurvivalStats.hydration/8));
-
-            }break;
-        }
-    }
-    
     #endregion
 
     #region Animator Update
@@ -2203,98 +2071,6 @@ public class SuperFPEditor : Editor{
         GUI.enabled = true;
         EditorGUILayout.EndVertical();
         HandleGuiChange("Undo Head Bob Setting changes");
-        #endregion
-
-        #region Survival Stats
-        EditorGUILayout.Space(); 
-        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider, GUILayout.MaxHeight(6)); 
-        EditorGUILayout.Space();
-        GUILayout.Label("Survival Stats",labelHeaderStyle,GUILayout.ExpandWidth(true));
-        EditorGUILayout.Space(10);
-
-        SurvivalStatsTSO = new SerializedObject(t);
-        defaultSurvivalStats = SurvivalStatsTSO.FindProperty("defaultSurvivalStats");
-        currentSurvivalStats = SurvivalStatsTSO.FindProperty("currentSurvivalStats");
-        
-            #region Basic settings
-            EditorGUILayout.BeginVertical(BoxPanel);
-            GUILayout.Label("<color=grey>Basic Settings</color>",labelSubHeaderStyle,GUILayout.ExpandWidth(true));
-            t.enableSurvivalStats = EditorGUILayout.ToggleLeft(new GUIContent("Enable Survival Stats", "Should the controller enable its survival systems?"), t.enableSurvivalStats);
-            GUI.enabled = t.enableSurvivalStats;
-            t.statTickRate = EditorGUILayout.Slider(new GUIContent("Stat Ticks Per-minute", "How many times per minute should the stats do a tick update? Each tick depletes/regenerates the stats by their respective rates below."), t.statTickRate, 0.1f, 20.0f);
-            #endregion
-            if (survivalStatsFoldout) {
-
-                #region Health Settings
-                GUILayout.Label("<color=grey>Health Settings</color>",labelSubHeaderStyle,GUILayout.ExpandWidth(true));
-                EditorGUILayout.BeginVertical(BoxPanel);
-                SerializedProperty statHP = defaultSurvivalStats.FindPropertyRelative("Health"), currentStatHP = currentSurvivalStats.FindPropertyRelative("Health");
-                
-                //preview bar
-                Rect casingRectHP = EditorGUILayout.GetControlRect();
-                Rect statRectHP = new Rect(casingRectHP.x + 2, casingRectHP.y + 2,
-                    Mathf.Clamp(casingRectHP.width / statHP.floatValue * currentStatHP.floatValue - 4, 0, casingRectHP.width),
-                    casingRectHP.height - 4);
-                EditorGUI.DrawRect(casingRectHP,statBackingColor);
-                EditorGUI.DrawRect(statRectHP,new Color32(211,0,0,(byte)(GUI.enabled ? 191 : 64)));
-            
-                EditorGUILayout.PropertyField(statHP,new GUIContent("Health Points", "How much health does the controller start with?"));
-            
-                GUI.enabled = false;
-                EditorGUILayout.ToggleLeft(new GUIContent("Health is critically low?"),currentSurvivalStats.FindPropertyRelative("hasLowHealth").boolValue);
-                GUI.enabled = t.enableSurvivalStats;
-                EditorGUILayout.EndVertical();
-                #endregion
-
-                #region Hunger Settings
-                GUILayout.Label("<color=grey>Hunger Settings</color>",labelSubHeaderStyle,GUILayout.ExpandWidth(true));
-                EditorGUILayout.BeginVertical(BoxPanel);
-                SerializedProperty statHU = defaultSurvivalStats.FindPropertyRelative("Hunger"), currentStatHU = currentSurvivalStats.FindPropertyRelative("Hunger");
-                
-                //preview bar
-                Rect casingRectHU = EditorGUILayout.GetControlRect(); 
-                Rect statRectHU = new Rect(casingRectHU.x + 2, casingRectHU.y + 2,
-                    Mathf.Clamp(casingRectHU.width / statHU.floatValue * currentStatHU.floatValue - 4, 0, casingRectHU.width), 
-                    casingRectHU.height - 4);
-                EditorGUI.DrawRect(casingRectHU,statBackingColor);
-                EditorGUI.DrawRect(statRectHU,new Color32(142,54,0,(byte)(GUI.enabled ? 191 : 64)));
-            
-                EditorGUILayout.PropertyField(statHU,new GUIContent("Hunger Points", "How much Hunger does the controller start with?"));
-                t.hungerDepletionRate = EditorGUILayout.Slider(new GUIContent("Hunger Depletion Per Tick","How much does hunger deplete per tick?"), t.hungerDepletionRate,0,5);
-                GUI.enabled = false;
-                EditorGUILayout.ToggleLeft(new GUIContent("Player is Starving?"),currentSurvivalStats.FindPropertyRelative("isStarving").boolValue);
-                GUI.enabled = t.enableSurvivalStats;
-                EditorGUILayout.EndVertical();
-                #endregion
-
-                #region Hydration Settings
-                GUILayout.Label("<color=grey>Hydration Settings</color>",labelSubHeaderStyle,GUILayout.ExpandWidth(true));
-                EditorGUILayout.BeginVertical(BoxPanel);
-                SerializedProperty statHY = defaultSurvivalStats.FindPropertyRelative("Hydration"), currentStatHY = currentSurvivalStats.FindPropertyRelative("Hydration");
-                
-                //preview bar
-                Rect casingRectHY = EditorGUILayout.GetControlRect();
-                Rect statRectHY = new Rect(casingRectHY.x + 2, casingRectHY.y + 2,
-                    Mathf.Clamp(casingRectHY.width / statHY.floatValue * currentStatHY.floatValue - 4, 0, casingRectHY.width), 
-                    casingRectHY.height - 4);
-                EditorGUI.DrawRect(casingRectHY,statBackingColor);
-                EditorGUI.DrawRect(statRectHY,new Color32(0,194,255,(byte)(GUI.enabled ? 191 : 64)));
-                
-                EditorGUILayout.PropertyField(statHY,new GUIContent("Hydration Points", "How much Hydration does the controller start with?"));
-                t.hydrationDepletionRate = EditorGUILayout.Slider(new GUIContent("Hydration Depletion Per Tick","How much does hydration deplete per tick?"), t.hydrationDepletionRate,0,5);
-                GUI.enabled = false;
-                EditorGUILayout.ToggleLeft(new GUIContent("Player is Dehydrated?"),currentSurvivalStats.FindPropertyRelative("isDehydrated").boolValue);
-                GUI.enabled = t.enableSurvivalStats;
-                EditorGUILayout.EndVertical();
-                #endregion
-            }
-            EditorGUILayout.Space();
-            survivalStatsFoldout = EditorGUILayout.BeginFoldoutHeaderGroup(survivalStatsFoldout,survivalStatsFoldout ?  "<color=#B83C82>show less</color>" : "<color=#B83C82>show more</color>", ShowMoreStyle);
-            EditorGUILayout.EndFoldoutHeaderGroup();
-            EditorGUILayout.EndVertical();
-
-        GUI.enabled = true;
-        HandleGuiChange("Undo Survival Stat Setting changes");
         #endregion
 
         #region Interactable

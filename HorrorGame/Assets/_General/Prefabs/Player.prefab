@@ -198,6 +198,7 @@ MonoBehaviour:
   controllerPaused: 0
   playerCamera: {fileID: 8181017503154572695}
   cameraHolder: {fileID: 6953383520897388541}
+  targetFrameRate: 100
   enableCameraControl: 1
   lockAndHideMouse: 1
   autoGenerateCrosshair: 1
@@ -214,7 +215,7 @@ MonoBehaviour:
   verticalRotationRange: 170
   standingEyeHeight: 0.8
   crouchingEyeHeight: 0.469
-  fovKickAmount: 10
+  fovKickAmount: 5
   fovSensitivityMultiplier: 0.74
   rotateCharacterToCameraForward: 0
   maxCameraDistance: 8
@@ -225,10 +226,10 @@ MonoBehaviour:
   bodyCatchupSpeed: 2.5
   inputResponseFiltering: 2.5
   enableMovementControl: 1
-  walkingSpeed: 140
-  sprintingSpeed: 275
-  crouchingSpeed: 90
-  decelerationSpeed: 240
+  walkingSpeed: 180
+  sprintingSpeed: 300
+  crouchingSpeed: 1
+  decelerationSpeed: 180
   sprintKey: 51
   crouchKey: 55
   slideKey: 17
@@ -247,7 +248,7 @@ MonoBehaviour:
   currentGroundMovementSpeed: 1
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 51
+    m_Bits: 17
   hardSlopeLimit: 70
   slopeInfluenceOnSpeed: 1
   maxStairRise: 0.5
@@ -257,8 +258,8 @@ MonoBehaviour:
   jumpEnhancements: 0
   jumped: 0
   jumpKey: 1
-  jumpPower: 70
-  airControlFactor: 1
+  jumpPower: 80
+  airControlFactor: 0.6
   descentMultiplier: 2.5
   tapJumpMultiplier: 1
   isSliding: 0
@@ -288,17 +289,17 @@ MonoBehaviour:
     groundPhysicMaterial: {fileID: 0}
   enableStaminaSystem: 1
   jumpingDepletesStamina: 1
-  stamina: 50
+  stamina: 20
   currentStaminaLevel: 0
-  s_minimumStaminaToSprint: 5
-  s_depletionSpeed: 10
-  s_regenerationSpeed: 5
+  s_minimumStaminaToSprint: 2
+  s_depletionSpeed: 5
+  s_regenerationSpeed: 3
   s_JumpStaminaDepletion: 6
   enableFootstepSounds: 1
   footstepTriggeringMode: 0
   stepTiming: 0.15
   footstepSoundSet: []
-  enableHeadBob: 1
+  enableHeadBob: 0
   headBobSpeed: 1
   headBobPower: 1
   zTilt: 3
