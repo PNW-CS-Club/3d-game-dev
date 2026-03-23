@@ -33,7 +33,7 @@ public class SUPERCharacterAIO : NetworkBehaviour{
     public Camera playerCamera;
     public GameObject cameraHolder;
     public int targetFrameRate = 100;
-    public bool  enableCameraControl = true, lockAndHideMouse = true, autoGenerateCrosshair = true, showCrosshairIn3rdPerson = false, drawPrimitiveUI = false;
+    public bool enableCameraControl = true, lockAndHideMouse = true, autoGenerateCrosshair = true, showCrosshairIn3rdPerson = false, drawStamMeter = true;
     public Sprite crosshairSprite;
     public PerspectiveModes cameraPerspective = PerspectiveModes._1stPerson;
     //use mouse wheel to switch modes. (too close will set it to fps mode and attempting to zoom out from fps will switch to tps mode)
@@ -302,7 +302,7 @@ public class SUPERCharacterAIO : NetworkBehaviour{
             Cursor.visible = false;
         }
 
-        if (autoGenerateCrosshair || drawPrimitiveUI) {
+        if ((autoGenerateCrosshair && crosshairSprite) || drawStamMeter) {
                 Canvas canvas = playerCamera.gameObject.GetComponentInChildren<Canvas>();
                 if (canvas == null) {canvas = new GameObject("AutoCrosshair").AddComponent<Canvas>();}
                 canvas.gameObject.AddComponent<CanvasScaler>().uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
@@ -318,7 +318,7 @@ public class SUPERCharacterAIO : NetworkBehaviour{
                 crosshairImg.transform.position = Vector3.zero;
                 crosshairImg.raycastTarget = false;
             }
-            if (drawPrimitiveUI) {
+            if (drawStamMeter) {
                 //Stam Meter BG
                 stamMeterBG = new GameObject("Stam BG").AddComponent<Image>();
                 stamMeterBG.rectTransform.sizeDelta = normalStamMeterSizeDelta;
@@ -464,7 +464,7 @@ public class SUPERCharacterAIO : NetworkBehaviour{
                     InputDir = transform.forward;
                 }
             }
-            if (drawPrimitiveUI) {
+            if (drawStamMeter) {
                 
                 if (enableStaminaSystem) {
                     if (!stamMeterBG.gameObject.activeSelf)stamMeterBG.gameObject.SetActive(true);
@@ -534,27 +534,26 @@ public class SUPERCharacterAIO : NetworkBehaviour{
     void FixedUpdate() {
         if (!isLocalPlayer) return;
 
-        if (!controllerPaused) {
+        if (controllerPaused) return;
 
-            #region Movement
-            if (enableMovementControl) {
-                GetGroundInfo();
-                MovePlayer(InputDir, currentGroundSpeed);
+        #region Movement
+        if (enableMovementControl) {
+            GetGroundInfo();
+            MovePlayer(InputDir, currentGroundSpeed);
 
-                if (isSliding) { Slide(); }
-            }
-            #endregion
-
-            #region Camera
-            if (enableCameraControl) {
-                RotateView(MouseXY, sensitivity, rotationWeight);
-                if (cameraPerspective == PerspectiveModes._3rdPerson) {
-                    UpdateBodyRotation_3rdPerson();
-                    UpdateCameraPosition_3rdPerson();
-                }
-            }
-            #endregion
+            if (isSliding) { Slide(); }
         }
+        #endregion
+
+        #region Camera
+        if (enableCameraControl) {
+            RotateView(MouseXY, sensitivity, rotationWeight);
+            if (cameraPerspective == PerspectiveModes._3rdPerson) {
+                UpdateBodyRotation_3rdPerson();
+                UpdateCameraPosition_3rdPerson();
+            }
+        }
+        #endregion
     }
     private void OnTriggerEnter(Collider other) {
         //Collectables
@@ -1729,7 +1728,7 @@ public class SuperFPEditor : Editor{
             t.crosshairSprite = (Sprite)EditorGUILayout.ObjectField(new GUIContent("Crosshair Sprite", "The Sprite the controller will use when generating a crosshair."), t.crosshairSprite, typeof(Sprite),false, GUILayout.Height(EditorGUIUtility.singleLineHeight));
             t.showCrosshairIn3rdPerson = EditorGUILayout.ToggleLeft(new GUIContent("Show Crosshair in 3rd person?", "Should the controller show the crosshair in 3rd person?"), t.showCrosshairIn3rdPerson);
             GUI.enabled = true;
-            t.drawPrimitiveUI = EditorGUILayout.ToggleLeft(new GUIContent("Draw Primitive UI", "Should the controller automatically generate and draw primitive stat UI?"), t.drawPrimitiveUI);
+            t.drawStamMeter = EditorGUILayout.ToggleLeft(new GUIContent("Draw Stamina Meter", "Should the controller automatically generate and draw a stamina meter?"), t.drawStamMeter);
             EditorGUILayout.Space(20);
 
             if (t.cameraPerspective == PerspectiveModes._1stPerson) {
@@ -1758,7 +1757,6 @@ public class SuperFPEditor : Editor{
 
         EditorGUILayout.Space(); EditorGUILayout.LabelField("",GUI.skin.horizontalSlider,GUILayout.MaxHeight(6)); EditorGUILayout.Space();
         GUILayout.Label("Movement Settings",labelHeaderStyle,GUILayout.ExpandWidth(true));
-        EditorGUILayout.Space(20);
 
         EditorGUILayout.BeginVertical(BoxPanel);
         if (movementSettingFoldout) {

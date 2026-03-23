@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86d14777-abab-4424-b7b0-8e468570b47c" name="Changes" comment="" />
+    <list default="true" id="86d14777-abab-4424-b7b0-8e468570b47c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_General/Prefabs/DebugCanvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_General/Prefabs/DebugCanvas.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_General/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_General/Prefabs/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_General/SUPER Character Controller/SUPERCharacterAIO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_General/SUPER Character Controller/SUPERCharacterAIO.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +19,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8081513dc2364383b8289d30d2169b2e9f8c00/89/b891e6a5/ObjectPreview.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8081513dc2364383b8289d30d2169b2e9f8c00/d3/63399e9d/EditorStyles.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_General/InputDebug.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_General/Prefabs/Keys/RandomSpin.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.multiplayer.tools@8395f16a9a9a/Common/Runtime/Helpers/RuntimeUpdaterBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -29,7 +38,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;45-toon-shading&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;48-map&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -109,6 +118,7 @@
       <workItem from="1771568055022" duration="40000" />
       <workItem from="1771801453460" duration="948000" />
       <workItem from="1771802542843" duration="1000" />
+      <workItem from="1774282642909" duration="3863000" />
     </task>
     <servers />
   </component>

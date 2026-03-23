@@ -121,7 +121,7 @@ Transform:
   m_GameObject: {fileID: 1944040594662547093}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.69664, y: 1.5, z: -0.42559713}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -203,7 +203,7 @@ MonoBehaviour:
   lockAndHideMouse: 1
   autoGenerateCrosshair: 1
   showCrosshairIn3rdPerson: 0
-  drawPrimitiveUI: 1
+  drawStamMeter: 1
   crosshairSprite: {fileID: 0}
   cameraPerspective: 0
   automaticallySwitchPerspective: 0
@@ -294,7 +294,7 @@ MonoBehaviour:
   s_minimumStaminaToSprint: 2
   s_depletionSpeed: 5
   s_regenerationSpeed: 3
-  s_JumpStaminaDepletion: 6
+  s_JumpStaminaDepletion: 3
   enableFootstepSounds: 1
   footstepTriggeringMode: 0
   stepTiming: 0.15
@@ -303,24 +303,6 @@ MonoBehaviour:
   headBobSpeed: 1
   headBobPower: 1
   zTilt: 3
-  enableSurvivalStats: 0
-  defaultSurvivalStats:
-    health: 250
-    hunger: 100
-    hydration: 100
-    hasLowHealth: 0
-    isStarving: 0
-    isDehydrated: 0
-  statTickRate: 3.3
-  hungerDepletionRate: 1
-  hydrationDepletionRate: 2
-  currentSurvivalStats:
-    health: 250
-    hunger: 100
-    hydration: 100
-    hasLowHealth: 0
-    isStarving: 0
-    isDehydrated: 0
   interactKey: 19
   interactRange: 2.4
   interactableLayer:
