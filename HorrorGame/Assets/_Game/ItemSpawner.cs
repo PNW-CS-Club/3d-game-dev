@@ -3,9 +3,10 @@ using Random = UnityEngine.Random;
 using Mirror;
 using System.Collections.Generic;
 
-public class RandomSpawnNetworked : NetworkBehaviour
+public class ItemSpawner : NetworkBehaviour
 {
     public GameObject prefab;
+    public int numCollected = 0;
 
     void Start()
     {
@@ -28,8 +29,19 @@ public class RandomSpawnNetworked : NetworkBehaviour
 			NetworkServer.Spawn(spawnedObject);
 		}
     }
+    
+    public void PickUp(ItemPickup item) 
+    {
+	    // only the server is allowed to recognize an item pickup event
+	    if (!isServer) return;
+	    
+	    numCollected++;
+	    Debug.Log("numCollected = " + numCollected);
+	    NetworkServer.Destroy(item.gameObject);
+    }
 
-	static int[] PickSome(int[] array, int numToChoose) {
+	static int[] PickSome(int[] array, int numToChoose) 
+	{
 		List<int> list = new List<int>(array.Length);
 		foreach (int val in array) {
 			list.Add(val);
