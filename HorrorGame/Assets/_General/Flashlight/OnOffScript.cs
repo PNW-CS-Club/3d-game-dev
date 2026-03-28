@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class OnOffScript : MonoBehaviour
 {
@@ -15,19 +16,9 @@ public class OnOffScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            if(isOn == true)
-            {
-                FlashLightLight.gameObject.SetActive(false);
-                isOn = false;
-                Debug.Log("Flashlight is off");
-            } else
-            {
-                FlashLightLight.gameObject.SetActive(true);
-                isOn = true;
-                Debug.Log("Flashlight is on");
-            }
+        if (Mouse.current.leftButton.wasPressedThisFrame) {
+            isOn = !isOn;
+            FlashLightLight.SetActive(isOn);
         }
     }
 }

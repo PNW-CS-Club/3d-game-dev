@@ -6,9 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="86d14777-abab-4424-b7b0-8e468570b47c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_General/Prefabs/DebugCanvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_General/Prefabs/DebugCanvas.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_General/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_General/Prefabs/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_General/SUPER Character Controller/SUPERCharacterAIO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_General/SUPER Character Controller/SUPERCharacterAIO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_General/Flashlight/OnOffScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_General/Flashlight/OnOffScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_General/Materials/Toon_Bricks.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_General/Materials/Toon_Bricks.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_General/Materials/Toon_Foil.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_General/Materials/Toon_Foil.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_General/Materials/Toon_Ground.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_General/Materials/Toon_Ground.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Game.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +30,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/_General/Prefabs/Keys/RandomSpin.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.multiplayer.tools@8395f16a9a9a/Common/Runtime/Helpers/RuntimeUpdaterBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="false" />
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 5
@@ -125,6 +131,7 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="false" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityProjectDiscoverer">
     <option name="hasUnityReference" value="true" />
@@ -134,5 +141,6 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>
