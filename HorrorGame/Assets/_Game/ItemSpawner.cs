@@ -18,7 +18,7 @@ public class ItemSpawner : NetworkBehaviour
 			indices[i] = i;
 		}
 
-		int[] choices = PickSome(indices, 3);
+		int[] choices = ChooseSome(indices, 3);
 		foreach (int index in choices)
 		{
 			var child = transform.GetChild(index);
@@ -36,17 +36,23 @@ public class ItemSpawner : NetworkBehaviour
 	    if (!isServer) return;
 	    
 	    numCollected++;
-	    Debug.Log("numCollected = " + numCollected);
+	    Debug.Log("(server) numCollected set to " + numCollected);
+	    RpcUpdateCount(numCollected);
 	    NetworkServer.Destroy(item.gameObject);
     }
 
-	static int[] PickSome(int[] array, int numToChoose) 
+    [ClientRpc]
+    private void RpcUpdateCount(int num) 
+    {
+	    numCollected = num;
+	    Debug.Log("(client) numCollected updated to " + numCollected);
+    }
+
+	static int[] ChooseSome(int[] array, int numToChoose) 
 	{
 		List<int> list = new List<int>(array.Length);
-		foreach (int val in array) {
-			list.Add(val);
-		}
-		
+		list.AddRange(array);
+
 		int n = Mathf.Min(array.Length, numToChoose);
 		int[] result = new int[n];
 		for (int i = 0; i < n; i++) {
