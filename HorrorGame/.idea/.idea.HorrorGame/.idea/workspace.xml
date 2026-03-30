@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="86d14777-abab-4424-b7b0-8e468570b47c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_General/Flashlight/OnOffScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_General/Flashlight/OnOffScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_General/ToonMaterials/Toon_Shrub.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_General/ToonMaterials/Toon_Shrub.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_General/ToonMaterials/Toon_Shrub_Branch000.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_General/ToonMaterials/Toon_Shrub_Branch000.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Game.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,9 +23,16 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8081513dc2364383b8289d30d2169b2e9f8c00/89/b891e6a5/ObjectPreview.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8081513dc2364383b8289d30d2169b2e9f8c00/d3/63399e9d/EditorStyles.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Editor/CustomEditorScripts/HedgeHelperEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_General/InputDebug.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_General/Prefabs/Keys/RandomSpin.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.multiplayer.tools@8395f16a9a9a/Common/Runtime/Helpers/RuntimeUpdaterBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.probuilder@9b6693f09f97/Runtime/Core/ProBuilderMesh.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.probuilder@9b6693f09f97/Runtime/Core/ProBuilderMeshFunction.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.probuilder@9b6693f09f97/Runtime/Shapes/Pipe.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.probuilder@9b6693f09f97/Runtime/Shapes/ProBuilderShape.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.probuilder@9b6693f09f97/Runtime/Shapes/Shape.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.probuilder@9b6693f09f97/Runtime/Shapes/Sphere.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="false" />
   <component name="ProjectColorInfo">{
@@ -118,6 +129,8 @@
       <workItem from="1771801453460" duration="948000" />
       <workItem from="1771802542843" duration="1000" />
       <workItem from="1774282642909" duration="3863000" />
+      <workItem from="1774890480571" duration="2346000" />
+      <workItem from="1774893423609" duration="2329000" />
     </task>
     <servers />
   </component>
