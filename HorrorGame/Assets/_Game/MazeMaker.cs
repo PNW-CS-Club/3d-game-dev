@@ -1,18 +1,20 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class MazeMaker : MonoBehaviour
 {
     [Header("Maze Configuration")]
-    [SerializeField] private Vector2Int _gridSize; //this is the size of the grid
-
+    [SerializeField] private Vector2Int _gridSize = new(2, 2); //this is the size of the grid
     [SerializeField] private Vector2 _cellSize = new(5f, 5f); //this the size of each cell in the maze
     
     [Header("Spawnable Prefabs")] 
     [SerializeField] private GameObject hedgePrefab;
+    
+    [Header("Debug")]
+    [SerializeField] private bool drawDebugGrid = true;
+    [SerializeField] private float debugYOffset = -2f;
 
 
     private bool[,] horizEdgeExists;
@@ -88,6 +90,7 @@ public class MazeMaker : MonoBehaviour
 
     private void OnDrawGizmos() {
         // draws a grid in the editor that is the same size as the grid that will spawn in at runtime
+        if (!drawDebugGrid) return;
 
         Gizmos.color = Color.purple;
         List<Vector3> points = new List<Vector3>();
@@ -98,7 +101,7 @@ public class MazeMaker : MonoBehaviour
         float endZ = _gridSize.y * _cellSize.y;
         
         // this offset of half of a cell is applied to every point
-        Vector3 offset = transform.position;
+        Vector3 offset = transform.position + Vector3.up * debugYOffset;
         
         // calculate the lines going along the z-axis
         for (int i = 0; i <= _gridSize.x; i++) {
