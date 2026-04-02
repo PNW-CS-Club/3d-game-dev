@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="86d14777-abab-4424-b7b0-8e468570b47c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Game/MazeMaker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Game/MazeMaker.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Game.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -129,7 +128,7 @@
       <workItem from="1774890480571" duration="2346000" />
       <workItem from="1774893423609" duration="2329000" />
       <workItem from="1774978423889" duration="3838000" />
-      <workItem from="1775010054387" duration="1341000" />
+      <workItem from="1775010054387" duration="2559000" />
     </task>
     <servers />
   </component>
