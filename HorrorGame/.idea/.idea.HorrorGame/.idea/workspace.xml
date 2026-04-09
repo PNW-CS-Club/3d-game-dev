@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="86d14777-abab-4424-b7b0-8e468570b47c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HorrorGame/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_General/Abandoned_Asylum/Prefabs/Chandelier.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_General/Abandoned_Asylum/Prefabs/Chandelier.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_General/Prefabs/Environment/CenterDoorWay.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_General/Prefabs/Environment/CenterDoorWay.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Game.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,6 +133,8 @@
       <workItem from="1774893423609" duration="2329000" />
       <workItem from="1774978423889" duration="3838000" />
       <workItem from="1775010054387" duration="2559000" />
+      <workItem from="1775762585765" duration="18000" />
+      <workItem from="1775762623995" duration="897000" />
     </task>
     <servers />
   </component>
